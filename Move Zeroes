@@ -1,0 +1,32 @@
+//Problem : leetcode
+// https://leetcode.com/problems/move-zeroes/
+
+
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+    int n=nums.size();
+        int left=0;
+        int right=0;
+        // Technique if two pointer left----right
+        // move right if nums[right]==0
+        // else swap left  and right nums values 
+        // increase both
+        
+        while(right<n){
+            if(nums[right]==0)
+                right++;
+            else
+            {
+               int  tp=nums[right];
+                nums[right]=nums[left];
+                nums[left]=tp;
+                right++;
+                left++;
+            }
+        }
+        
+         
+    }
+};
