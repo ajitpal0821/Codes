@@ -19,3 +19,11 @@ public:
         return count;
     }
 };
+
+
+// Explaination of n&1
+
+// The & operator provides a mask that "cancels out" bits in the first depending if they're set in the second parameter - so assume N is the number 17, that expressed in binary is 00010001, the number 1 in binary is 00000001, so masking the two together will "blank" the first set of bits, leaving you with N as 00000001.
+
+// 
+Basically that particular if statement drops all except the last bit, which is either 0 or 1, so it is a condition detecting if N is odd or even.
