@@ -1,0 +1,33 @@
+// Leet Code Problem:
+// https://leetcode.com/problems/first-unique-character-in-a-string/submissions/
+
+class Solution {
+public:
+    int firstUniqChar(string s) {
+        int n=s.size();
+        unordered_map<int,int>mp;
+        int val=-1,index=-1;                    
+        for(int i=n-1;i>=0;i--){            // total count of each character
+                                        // look at for loop...reverse because of unordered map..read gfg
+            mp[s[i]]++;
+        }
+        for(auto x:mp){
+            if(x.second==1){
+                val=x.first;
+               break;
+            }
+        }
+        
+        for(int i=0;i<n;i++){
+            if(val==s[i] and val>=0){       // val > 0 is applied if there is not elememt with total count ==1 then val wll be -1
+               index=i;
+               break;
+                }
+                
+        }
+        if(index>=0)
+        return index;
+        else 
+            return -1;
+    }
+};
