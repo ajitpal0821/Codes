@@ -1,0 +1,23 @@
+// LeetCode Problem:
+
+// https://leetcode.com/problems/power-of-three/
+
+
+
+class Solution {
+public:
+    bool isPowerOfThree(int n) {
+        int i=0,val=0;
+        while(n!=pow(3,i)){
+            if(n>pow(3,i))        // Self made by me..
+                i++;
+            else{
+                
+                return false;
+            }
+        }
+        return true;
+    }
+};
+
+// Ajitpal Singh Sidhu ,Bathinda
