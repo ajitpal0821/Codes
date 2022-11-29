@@ -1,0 +1,30 @@
+
+// Leet Code Problem:
+
+//https://leetcode.com/problems/add-digits/
+
+
+
+
+class Solution {
+public:
+    int number(int n){
+          int sum=0;
+        while(n>0){
+            int d;
+            d=n%10;
+            sum=sum+d;
+            n=n/10;
+        }
+        return sum;
+    }
+    int addDigits(int num) {
+      int d=number(num);
+        if(d/10==0)
+            return d;
+        else
+          return addDigits(d);
+        
+         
+    }
+};
