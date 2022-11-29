@@ -1,0 +1,22 @@
+// leetCode problem:
+
+// code:https://leetcode.com/problems/find-peak-element/
+
+
+
+
+class Solution {
+public:
+    int findPeakElement(vector<int>& nums) {
+        int n=nums.size();
+        int i=0,max=INT_MIN,index=0;
+        while(i<n){
+            if(nums[i]>max){
+                index=i;
+                max=nums[i];
+            }
+            i++;
+        }
+        return index;
+    }
+};
