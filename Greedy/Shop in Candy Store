@@ -1,0 +1,36 @@
+//Problem:https://practice.geeksforgeeks.org/problems/shop-in-candy-store1145/1
+
+//GFG Problem
+
+class Solution
+{
+public:
+    vector<int> candyStore(int candies[], int N, int K)
+    {
+        
+        // Minimum Candies Money
+        sort(candies,candies+N);
+        int max=0,min=0;
+       int buy=0;
+        int free=N-1;
+        while(buy<=free){
+            min=min+candies[buy];
+        
+            buy++;
+            free=free-K;
+            
+        }
+        // Maximum Candies Money
+        buy=N-1;
+        free=0;
+         while(buy>=free){
+            max=max+candies[buy];
+            buy--;
+           free=free+K;
+            }
+        vector<int>v;
+        v.push_back(min);
+        v.push_back(max);
+        return v;
+    }
+};
