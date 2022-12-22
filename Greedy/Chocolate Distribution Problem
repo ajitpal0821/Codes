@@ -1,0 +1,26 @@
+// Problem Link:https://practice.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1
+// GFG Code:
+
+
+
+class Solution{
+    public:
+    long long findMinDiff(vector<long long> a, long long n, long long m){
+    //code
+    int arr[m];
+    sort(a.begin(),a.end());
+    int min=INT_MAX;
+    // int max=0;
+    int i=0;
+    int j=m-1;
+    while(j<a.size()){
+        int diff=a[j]-a[i];
+        if(diff<min){
+            min=diff;
+        }
+        j++;
+        i++;
+    }
+    return min;
+    }   
+};
