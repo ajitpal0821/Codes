@@ -1,0 +1,21 @@
+// Problem Link:https://practice.geeksforgeeks.org/problems/check-if-it-is-possible-to-survive-on-island4922/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+// Code:
+
+class Solution{
+public:
+    int minimumDays(int S, int N, int M){
+        // code here
+        int Sunda=S/7;
+        int buy=S-Sunda;
+       int ans=0;
+            if(S*M%N==0)
+            ans=S*M/N;
+            else
+            ans=S*M/N+1;
+        
+        if(buy>=ans)
+        return ans;
+        else
+        return -1;
+    }
+};
