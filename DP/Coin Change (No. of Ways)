@@ -11,7 +11,13 @@ class Solution {
         // code here.
         long long t[N+1][sum+1];
         for(int i=0;i<N+1;i++){
-            for(int j=0;j<sum+1;j++){
+            for(int j=0;j<sum+1;j++){                             // 0 0 0 0 0 0
+                                                                  // 1
+                                                                  // 1
+                                                                  // 1
+                                                                  // 1
+                                                                  // 1       Initalisation Different
+                                                                  
                 if(j==0)
                 t[i][j]=1;
                
