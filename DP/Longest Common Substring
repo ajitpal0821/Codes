@@ -1,0 +1,34 @@
+
+// GFG:https://practice.geeksforgeeks.org/problems/longest-common-substring1452/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+
+
+class Solution{
+    public:
+    
+    int longestCommonSubstr (string s1, string s2, int m, int n)
+    {
+        // your code here
+        int t[m+1][n+1];
+       for(int i=0;i<m+1;i++){
+           for(int j=0;j<n+1;j++){
+               if(i==0 or j==0)
+               t[i][j]=0;
+           }
+       }
+         int max = 0;
+       for(int i=1;i<m+1;i++){
+           for(int j=1;j<n+1;j++){
+               if(s1[i-1]==s2[j-1]){
+             t[i][j]=1+t[i-1][j-1]; 
+             if(t[i][j]>=max)
+             max=t[i][j];
+               }
+             else
+            t[i][j]=0;
+           }
+       }
+      return max;
+    
+    }
+};
