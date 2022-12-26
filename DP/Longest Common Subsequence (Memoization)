@@ -1,0 +1,35 @@
+// Problem link:https://practice.geeksforgeeks.org/problems/longest-common-subsequence-1587115620/1
+// refer Notebook also 
+
+//Help from aditya Verma
+
+
+int static dp[1001][1001];              //1<=size(str1),size(str2)<=10^3  given in question    dp[m+1][n+1]
+class Solution
+{
+    public:
+    //Function to find the length of longest common subsequence in two strings.
+    int test(int m, int n, string s1, string s2)
+    {
+        // your code here
+        if(m==0 or n==0)
+        return 0;
+        
+        if(dp[m][n]!=-1)
+        return dp[m][n];
+        
+        if(s1[m-1]==s2[n-1])
+        return dp[m][n]=1+test(m-1,n-1,s1,s2);
+        else
+        return dp[m][n]=max(test(m-1,n,s1,s2),test(m,n-1,s1,s2));
+        
+    }
+    
+    int lcs(int x, int y, string s1, string s2)
+    {
+        // your code here
+        memset(dp,-1,sizeof(dp));
+       return test( x,y,s1,s2);
+        
+    }
+};
