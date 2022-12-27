@@ -1,0 +1,20 @@
+
+
+
+
+class Solution{
+public:
+	bool commonSubseq (string s1, string s2)
+	{
+	   int m=s1.length();
+    int n=s2.length();
+    
+     for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            if(s1[i]==s2[j])
+                return true;
+        }
+     }
+   return false;
+	}
+};
