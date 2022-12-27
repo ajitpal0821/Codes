@@ -1,0 +1,31 @@
+// https://practice.geeksforgeeks.org/problems/minimum-number-of-deletions4610/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+// Just do length of string - length of LCS
+
+int lcs(string A,string B){
+      int m=A.length();
+      int dp[m+1][m+1];
+      
+      for(int i=0;i<m+1;i++){
+          for(int j=0;j<m+1;j++){
+              if(j==0 or i==0)
+              dp[i][j]=0;
+          }
+      }
+      
+      for(int i=1;i<m+1;i++){
+          for(int j=1;j<m+1;j++){
+              if(A[i-1]==B[j-1])
+              dp[i][j]=1+dp[i-1][j-1];
+              else
+              dp[i][j]=max(dp[i][j-1],dp[i-1][j]);
+          }
+      }
+      
+      return (m-dp[m][m]);
+  }
+int minDeletions(string A, int n) { 
+    //complete the function here 
+     string B=string(A.rbegin(), A.rend());
+        return lcs(A,B);
+} 
