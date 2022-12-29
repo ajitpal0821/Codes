@@ -1,28 +1,22 @@
-// https://practice.geeksforgeeks.org/problems/maximum-path-sum-from-any-node/1
+// https://leetcode.com/problems/binary-tree-maximum-path-sum/description/
 // Think again
 
 class Solution {
-  public:
-    //Function to return maximum path sum from any node in a tree.
-    int res=INT_MIN;
-    int solve(Node*root,int &res){
-        if(root==NULL){
-            return 0;
-        }
-        int l=solve(root->left,res);
-        int r=solve(root->right,res);
-        
-        int temp=max(max(l,r)+root->data,root->data);
-        int ans=max(temp,root->data+l+r);
-        res=max(res,ans);
-        
-        return temp;
-    }
-    int findMaxSum(Node* root)
-    {
-       
-        solve(root,res);
-        return res;
+public:
+int sum(TreeNode*root,int &maxi){
+    if(root==NULL)
+    return 0;
+
+    int l=max(0,sum(root->left,maxi));
+    int r=max(0,sum(root->right,maxi));
+
+    maxi=max(maxi,l+r+root->val);
+    return (root->val+max(l,r));
+}
+    int maxPathSum(TreeNode* root) {
+        int maxi=INT_MIN;
+        sum(root,maxi);
+        return maxi;
     }
 };
 
