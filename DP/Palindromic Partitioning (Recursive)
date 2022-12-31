@@ -1,0 +1,39 @@
+// Prolem Link:https://practice.geeksforgeeks.org/problems/palindromic-patitioning4845/1
+// Recursive
+
+
+
+class Solution{
+public:
+bool palin(string str,int i,int j){
+    int c=0;
+    while(i<j){
+    if(str[i]!=str[j])
+        return false;              // at any point if string is palindrome or not
+        // c++;
+        i++;
+        j--;
+    }
+
+    return true;
+}
+int p(string str,int i,int j){
+    if(i>=j or palin(str,i,j)==true)
+    return 0;
+    // if(palin(str)==true)
+    // return 0;
+    int mn=INT_MAX;
+    for(int k=i;k<=j-1;k++){       // or int k=i;k<j;k++
+        int temp=p(str,i,k)+p(str,k+1,j)+1;
+        mn=min(mn,temp);
+        
+    }
+    return mn;
+}
+    int palindromicPartition(string str)
+    {
+        // code here
+        int n=str.size();
+        return p(str,0,n-1);
+    }
+};
