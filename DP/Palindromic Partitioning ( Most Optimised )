@@ -1,0 +1,59 @@
+// Problem link:https://practice.geeksforgeeks.org/problems/palindromic-patitioning4845/1
+// Most Optimal approach
+// Notebook:Never give up
+// for more  refer notebook
+
+
+
+int dp[501][501];
+class Solution{
+public:
+bool palin(string str,int i,int j){
+    int c=0;
+    while(i<j){
+    if(str[i]!=str[j])
+        return false;
+        // c++;
+        i++;
+        j--;
+    }
+
+    return true;
+}
+ int p(string str,int i,int j){
+    if(dp[i][j]!=-1)
+    return dp[i][j];
+    if(i>=j or palin(str,i,j)==true){
+    dp[i][j]=0;    
+    return 0;
+    }
+    dp[i][j]=INT_MAX;
+    int right,left;
+    for(int k=i;k<=j-1;k++){       
+        
+       if(dp[i][k]!=-1)
+        left=dp[i][k];
+       else
+       {
+          dp[i][k]=left=p(str,i,k);
+           
+       }
+       if(dp[k+1][j]!=-1)
+        right=dp[k+1][j];
+       else
+       {
+          dp[k+1][j]=right=p(str,k+1,j);
+       }
+       dp[i][j]=min(dp[i][j],1+right+left);
+        
+    }
+    return dp[i][j];
+}
+    int palindromicPartition(string str)
+    {
+        // code here
+        memset(dp,-1,sizeof(dp));
+        int n=str.size();
+        return p(str,0,n-1);
+    }
+};
