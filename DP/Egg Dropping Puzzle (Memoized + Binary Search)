@@ -1,0 +1,55 @@
+//  Memoized + Binary Search
+
+int dp[201][10001];  // Dimensions on egg and floor
+class Solution
+{// dp with binary search
+    public:
+    //Function to find minimum number of attempts needed in 
+    //order to find the critical floor
+    int solve(int e,int f){
+        
+    
+        if(f<=1)
+         return f;
+        if(e==1)
+         return f;
+        
+        
+        if(dp[e][f]!=-1)
+         return dp[e][f];
+        
+        int mn=INT_MAX,left=0,right=0;
+        
+        int low=1,high=f;
+        while(low<high){
+            int mid=low+(high-low)/2;
+            
+            if(dp[e-1][mid-1]!=-1)
+             left=dp[e-1][mid-1];
+            else
+              left=solve(e-1,mid-1);
+            
+            if(dp[e][f-mid]!=-1)
+             right=dp[e][f-mid];
+            else
+              right=solve(e,f-mid);
+            
+            if(left>right)
+                high=mid;
+            else
+             low=mid+1;
+            
+          int temp=1+max(left,right);
+           mn=min(temp,mn);
+        }
+      
+        return dp[e][f]=mn;
+    }
+    
+    int eggDrop(int e, int f) 
+    {
+        // your code here
+       memset(dp,-1,sizeof(dp));
+       return solve(e,f);
+    }
+};
