@@ -1,0 +1,40 @@
+// problem link:https://practice.geeksforgeeks.org/problems/detect-cycle-in-a-directed-graph/1
+// Look how adj list for directed graph is made
+
+//Code:
+
+class Solution {
+  public:
+    // Function to detect cycle in a directed graph.
+    bool dfs(int node,vector<int>adj[],int vis[],int pathvis[]){
+        vis[node]=1;
+        pathvis[node]=1;
+        
+        for(auto it:adj[node]){
+            if(!vis[it]){
+                if(dfs(it,adj,vis,pathvis)==true)
+                return true;
+            }
+            else if(pathvis[it])// && vis[it]
+            {
+                return true;
+            }
+        }
+        pathvis[node]=0;//backtracking or return from node
+        return false;
+    }
+    bool isCyclic(int V, vector<int> adj[]) {
+        // code here
+        int vis[V]={0};
+        int pathvis[V]={0};
+        
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                if(dfs(i,adj,vis,pathvis)==true)
+                return true;
+            }
+        }
+        return false;
+        
+    }
+};
