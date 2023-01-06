@@ -1,0 +1,36 @@
+// https://practice.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1
+// Done using BFS
+
+class Solution {
+  public:
+    vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src){
+        // code here
+        vector<int>adj[N];
+        for(auto it: edges){
+            int u=it[0];
+            int v=it[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        queue<int>q;
+        q.push(src);
+        vector<int> dis(N,1e9);
+        dis[src]=0;
+        while(!q.empty()){
+            int node=q.front();
+            q.pop();
+            for(auto it:adj[node]){
+                if(dis[it]>dis[node]+1){
+                dis[it]=dis[node]+1;
+                q.push(it);
+                }
+            }
+        }
+        vector<int>ans(N,-1);
+        for(int i=0;i<N;i++){
+            if(dis[i]!=1e9)
+            ans[i]=dis[i];
+        }
+        return ans;
+    }
+};
