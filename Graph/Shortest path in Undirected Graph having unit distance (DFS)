@@ -1,0 +1,40 @@
+//https://practice.geeksforgeeks.org/problems/shortest-path-in-undirected-graph-having-unit-distance/1
+// Striver comments section code
+
+
+class Solution {
+  public:
+  
+        void findShortestPath(vector<int>adj[],int V,int node,vector<int>&vis,vector<int>&dist){
+        vis[node] = 1;
+        for(auto adjNode:adj[node]){
+            if(dist[adjNode]>dist[node]+1)
+                dist[adjNode] = dist[node]+1;
+            if(!vis[adjNode]){
+                findShortestPath(adj,V,adjNode,vis,dist);
+            }
+        }
+        vis[node] = 0;
+    return;
+    }
+  public:
+    vector<int> shortestPath(vector<vector<int>>& edges, int N,int M, int src){
+        vector<int>adj[N];
+        for(auto edge:edges){
+            int u = edge[0];
+            int v = edge[1];
+            adj[u].push_back(v);
+            adj[v].push_back(u);
+        }
+        vector<int>vis(N,0);
+        vector<int>dist(N,INT_MAX);
+        dist[src] = 0;
+        findShortestPath(adj,N,src,vis,dist);
+        for(int i=0;i<N;i++){
+            if(dist[i]==INT_MAX){
+                dist[i] = -1;
+            }
+        }
+    return dist;
+    }
+            }
