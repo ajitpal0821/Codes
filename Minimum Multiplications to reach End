@@ -1,0 +1,28 @@
+//link:https://practice.geeksforgeeks.org/problems/minimum-multiplications-to-reach-end/1
+// help from striver
+class Solution {
+  public:
+    int minimumMultiplications(vector<int>& arr, int start, int end) {
+        // code here
+        queue<pair<int,int>>q; // node,number
+        q.push({start,0});
+        vector<int>dis(100000,INT_MAX);//0---9999
+        dis[start]=0;
+        while(!q.empty()){
+            auto it=q.front();
+            q.pop();
+            int node=it.first;
+            int dist=it.second;
+            int mod=100000;
+            for(auto it:arr){
+                int num=(node*it)%mod;// ex:3*2
+                if(dis[num]>dist+1){
+                    dis[num]=dist+1;
+                    if(num==end) return dist+1;
+                    q.push({num,dist+1});
+                }
+            }
+        }
+        return -1;
+    }
+};
