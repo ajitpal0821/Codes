@@ -1,0 +1,50 @@
+// link:https://practice.geeksforgeeks.org/problems/shortest-path-in-weighted-undirected-graph/1?utm_source=youtube&utm_medium=collab_striver_ytdescription&utm_campaign=shortest-path-in-weighted-undirected-graph
+
+// help from striver
+
+class Solution {
+  public:
+    vector<int> shortestPath(int n, int m, vector<vector<int>>& edges) {
+        // Code here
+        vector<pair<int,int>>adj[n+1];
+        for(auto it:edges){
+            adj[it[0]].push_back({it[1],it[2]});//node,weight;
+            adj[it[1]].push_back({it[0],it[2]});
+        }
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>pq;// dis,node
+        vector<int>dis(n+1,INT_MAX),prt(n+1);
+        for(int i=1;i<=n;i++){
+            prt[i]=i;
+        }
+        pq.push({0,1});
+        dis[1]=0;
+        while(!pq.empty()){
+            auto it=pq.top();
+            int dist=it.first;
+            int node=it.second;
+            pq.pop();
+            for(auto it:adj[node]){
+                int wt=it.second;
+                int adjnode=it.first;
+                
+                if(dis[adjnode]>wt+dist){
+                    dis[adjnode]=wt+dist;
+                    pq.push({dis[adjnode],adjnode});
+                    prt[adjnode]=node;
+                }
+            }
+        }
+        if(dis[n]==INT_MAX)
+        return {-1};
+        vector<int>path;
+        int node=n;
+        while(prt[node]!=node){
+            path.push_back(node);
+            node=prt[node];
+        }
+        path.push_back(1);
+        reverse(path.begin(),path.end());
+        return path;
+        
+    }
+};
