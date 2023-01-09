@@ -1,0 +1,44 @@
+// link:https://practice.geeksforgeeks.org/problems/shortest-path-in-a-binary-maze-1655453161/1
+// help from striver
+
+class Solution {
+  public:
+    int shortestPath(vector<vector<int>> &grid, pair<int, int> source,
+                     pair<int, int> destination) {
+        // code here
+        queue<pair<int,pair<int,int>>>q;
+        int u=source.first;
+        int v=source.second;
+        int n=grid.size();// no of rows
+        int m=grid[0].size(); // no of columns
+        q.push({0,{u,v}});
+        vector<vector<int>>dis(n,vector<int>(m,INT_MAX));// initializing n*m matrix with INT_MAX
+    dis[u][v]=0;
+            int delrow[]={-1,0,+1,0};// for move up and down
+            int delcol[]={0,+1,0,-1}; // for moving left and right
+        while(!q.empty()){
+         auto it=q.front();
+         q.pop();
+        int dist=it.first;
+        int r=it.second.first;
+        int c=it.second.second;
+        for(int i=0;i<4;i++){
+            int newr=r+delrow[i];
+            int newc=c+delcol[i];
+            
+            if(newc>=0 && newc<m && newr<n && newr>=0 && grid[newr][newc]==1 &&dist+1<dis[newr][newc]){  // checking valid condition
+                dis[newr][newc]=dist+1;
+                if(newr==destination.first && newc==destination.second)
+                return dist+1;
+                q.push({1+dist,{newr,newc}});
+            }
+        }
+        
+    }
+            if(source.first==destination.first && source.second==destination.second) 
+    return 0; 
+    return -1;
+                     }
+                     
+    
+};
