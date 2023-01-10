@@ -1,0 +1,38 @@
+// link:https://practice.geeksforgeeks.org/problems/cheapest-flights-within-k-stops/1?problemStatus=unsolved&page=1&sortBy=newest&query=problemStatusunsolvedpage1sortBynewest
+// help from striver
+
+class Solution {
+  public:
+    int CheapestFLight(int n, vector<vector<int>>& flights, int src, int dst, int K)  {
+        // Code here
+        vector<pair<int,int>>adj[n];
+        for(auto it:flights){
+            adj[it[0]].push_back({it[1],it[2]});
+            
+        }
+        queue<pair<int,pair<int,int>>>q;
+        q.push({0,{src,0}});// stops,node,wt
+        vector<int>dis(n,INT_MAX);
+        dis[src]=0;
+        while(!q.empty()){
+            auto it= q.front();
+            q.pop();
+            int stop=it.first;
+            int node=it.second.first;
+            int wt=it.second.second;
+            
+            if(stop>K )continue;
+            for(auto it:adj[node])
+            {
+                int adjnode=it.first;
+                int dist=it.second;
+            if(dis[adjnode]>wt+dist && stop<=K){
+                dis[adjnode]=wt+dist;
+                q.push({stop+1,{adjnode,wt+dist}});
+            }
+            }
+        }
+        if(dis[dst]==INT_MAX) return {-1};
+        return dis[dst];
+    }
+};
