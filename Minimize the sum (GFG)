@@ -1,0 +1,25 @@
+// link:https://practice.geeksforgeeks.org/problems/86e609332c9ef4f6b8aa79db11a6c0808c4a1bca/1
+// remebered from love babbar
+
+class Solution {
+public:
+    int minimizeSum(int N, vector<int> arr) {
+        // code here
+        sort(arr.begin(),arr.end(),greater<int>());
+        priority_queue<int,vector<int>,greater<int>>s;// dont use stack
+        for(int i=0;i<N;i++){
+            s.push(arr[i]);
+        }
+        int sum=0,count=0;
+        while(s.size()>1){// dont apply !s.empty() to check
+            int a=s.top();
+            s.pop();
+            int b=s.top();
+            s.pop();
+            int sum=a+b;
+            s.push(sum);
+            count=count+sum;
+        }
+        return count;
+    }
+};
