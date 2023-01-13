@@ -1,0 +1,17 @@
+// https://practice.geeksforgeeks.org/problems/minimize-the-sum-of-product1525/1?page=1&curated[]=1&sortBy=submissions
+
+
+class Solution{
+    public:
+    long long int minValue(int a[], int b[], int n)
+    {
+        // Your code goes here
+        sort(a,a+n); //ascending order
+        sort(b,b+n,greater<int>()); ///descending order
+        long long sum=0;
+        for(int i=0;i<n;i++){
+            sum=sum+a[i]*b[i];
+        }
+        return sum;
+    }
+};
