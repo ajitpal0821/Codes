@@ -1,0 +1,41 @@
+// link:https://practice.geeksforgeeks.org/problems/convert-a-sentence-into-its-equivalent-mobile-numeric-keypad-sequence0547/1?page=3&category[]=Arrays&category[]=Strings&curated[]=1&sortBy=submissions
+
+string printSequence(string S)
+{
+    map<char, string> mp;
+    int i = 2;
+    
+    for(char c = 'A'; c <= 'Z'; c++){
+        string s = ""; 
+        
+        s += to_string(i);
+        mp[c] = s;
+        c++;
+        s += to_string(i);
+        mp[c] = s;
+        c++;
+        s += to_string(i);
+        mp[c] = s;
+       
+        if(c == 'R' || c == 'Y'){
+            c++;
+            s += to_string(i);
+            mp[c] = s;
+        }
+        
+        i++;
+        
+    } 
+    
+    
+   string ans = "";
+   
+   for(char c: S){
+       if(c == ' ')
+            ans += "0";
+        else
+            ans += mp[c];
+   }
+    
+    return ans;
+}
