@@ -1,0 +1,17 @@
+//link:https://practice.geeksforgeeks.org/problems/find-first-repeated-character4108/1?page=2&category[]=Arrays&category[]=Strings&curated[]=1&sortBy=submissions
+
+
+string firstRepChar(string s)
+{
+    //code here.
+    unordered_map<char,int>mp;
+    string ans;
+    for(int i=0;i<s.size();i++){
+        mp[s[i]]++;
+        if(mp[s[i]]>1){
+        ans.push_back(s[i]);
+    return ans;
+        }
+    }
+    return "-1";
+}
