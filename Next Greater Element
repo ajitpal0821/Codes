@@ -1,0 +1,26 @@
+//link https://practice.geeksforgeeks.org/problems/214734e358208c1c6811d9b237b518f6b3c3c094/1
+
+//Code:help from gfg
+
+class Solution {
+  public:
+    vector<long long> nextLargerElement(vector<long long> &arr, int n){
+        // Your code hereijn
+        vector<long long>temp(n,-1);
+        int start=arr[0];
+        stack<long long>st;
+        
+        for(int i=0;i<n;i++){
+           while(!st.empty() && arr[st.top()]<arr[i]){
+                temp[st.top()]=arr[i];
+                st.pop();
+            
+                
+            }
+                st.push(i);
+            
+            
+        }
+        return temp;
+    }
+};
