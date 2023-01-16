@@ -11,7 +11,7 @@ class Solution {
         stack<long long>st;
         
         for(int i=0;i<n;i++){
-           while(!st.empty() && arr[st.top()]<arr[i]){
+           while(!st.empty() && arr[st.top()]<arr[i]){// add all elements that are lower or equal to top of index of stack
                 temp[st.top()]=arr[i];
                 st.pop();
             
