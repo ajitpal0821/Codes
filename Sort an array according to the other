@@ -1,0 +1,35 @@
+//link:https://practice.geeksforgeeks.org/problems/relative-sorting4323/1?page=2&curated[]=1&sortBy=submissions
+
+class Solution{
+    public:
+    // A1[] : the input array-1
+    // N : size of the array A1[]
+    // A2[] : the input array-2
+    // M : size of the array A2[]
+    
+    //Function to sort an array according to the other array.
+    vector<int> sortA1ByA2(vector<int> A1, int N, vector<int> A2, int M) 
+    {
+        //Your code here
+        unordered_map<int,int>mp;
+        for(int i=0;i<N;i++){
+            mp[A1[i]]++;
+        }
+        vector<int>v;
+        for(int i=0;i<M;i++){
+            int fr=mp[A2[i]];
+            while(fr--){
+                     v.push_back(A2[i]);    
+                     mp[A2[i]]=0;}
+        }
+        int k=v.size();
+        for(int i=0;i<N;i++){
+            if(mp[A1[i]]>0)
+            v.push_back(A1[i]);
+        }
+        sort(v.begin()+k,v.end());
+        return v;
+    } 
+};
+
+
