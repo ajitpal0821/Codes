@@ -1,0 +1,45 @@
+// link:https://practice.geeksforgeeks.org/problems/maximum-product-subarray3604/1
+
+// help from yogesh
+
+
+class Solution{
+public:
+
+	// Function to find maximum product subarray
+	long long maxProduct(vector<int> arr, int n) {
+	    // code here
+	  long long start=arr[0];
+	 long long ma=start;
+        long long mi=start;
+	  
+	  for(int i=1;i<n;i++){// i=1 to avoid mul of same number
+	  if(arr[i]<0)
+	  swap(ma,mi);// to multiply max with max and min with mininum
+	  ma=max(arr[i]*1ll,ma*arr[i]);
+	  mi=min(arr[i]*1ll,mi*arr[i]);
+	    start=max(start,ma);
+	  }
+	    return start;
+	}
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, i;
+        cin >> n;
+        vector<int> arr(n);
+        for (i = 0; i < n; i++) {
+            cin >> arr[i];
+        }
+        Solution ob;
+        auto ans = ob.maxProduct(arr, n);
+        cout << ans << "\n";
+    }
+    return 0;
+}
+/
