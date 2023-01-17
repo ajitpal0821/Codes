@@ -1,0 +1,23 @@
+// link:https://practice.geeksforgeeks.org/problems/palindromic-array-1587115620/1
+
+class Solution {
+public:
+    int PalinArray(int a[], int n)
+    {
+    	// code here
+    	for(int i=0;i<n;i++){
+    	        string b=to_string(a[i]);// to convert to string
+    	   int  start=0;
+    	    int end=b.size()-1;
+    	    while(start<end){
+    	    if(b[start]==b[end]){
+    	        start++;
+    	        end--;
+    	    }
+    	    else
+    	    return 0;
+    	    }
+    	}
+    	return 1;
+    }
+};
