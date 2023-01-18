@@ -1,0 +1,46 @@
+// link:https://practice.geeksforgeeks.org/problems/median-of-2-sorted-arrays-of-different-sizes/1?utm_source=gfg&utm_medium=article&utm_campaign=bottom_sticky_on_article
+
+
+//Code:
+
+
+class Solution{
+    public:
+    double MedianOfArrays(vector<int>& array1, vector<int>& array2)
+    {
+        // Your code goes here
+        int n=array1.size();
+        int m=array2.size();
+        int  nums[m+n];
+        int i=0,j=0,k=0;
+        while(i<n &&j<m){
+            if(array1[i]>array2[j]){
+                nums[k]=array2[j];
+                j++;        // basically using merge sort algorithm
+                k++;
+            }
+            else {
+                nums[k]=array1[i];
+                i++;
+                k++;
+            }
+            
+        }
+        while(i<n){
+            nums[k]=array1[i];
+            i++;
+            k++;
+        }
+        while(j<m){
+            nums[k]=array2[j];
+            j++;
+            k++;
+        }
+        
+        if((n+m)%2==0){
+            return double(nums[(n+m)/2]+nums[(n+m)/2-1])/2;
+        }
+        else
+        return (nums[(n+m)/2]);
+    }
+};
