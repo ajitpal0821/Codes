@@ -1,0 +1,16 @@
+//https://practice.geeksforgeeks.org/problems/jump-game/1
+
+
+class Solution {
+  public:
+    int canReach(int arr[], int N) {
+        // code herearr[i]
+        int rea=0;
+        for(int i=0;i<N;i++){
+            if(rea<i)
+            return 0;
+            rea=max(rea,i+arr[i]);
+        }
+        return 1;
+    }
+};
