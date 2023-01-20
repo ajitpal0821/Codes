@@ -1,6 +1,6 @@
 //https://practice.geeksforgeeks.org/problems/jump-game/1
 
-
+// tech dose
 class Solution {
   public:
     int canReach(int arr[], int N) {
