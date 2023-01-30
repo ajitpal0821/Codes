@@ -1,0 +1,27 @@
+// Code:help from yogesh
+
+
+class Solution 
+{
+    public:
+    //Function to find the minimum number of swaps required to sort the array. 
+	int minSwaps(vector<int>&arr)
+	{
+	    int n=arr.size();
+	    // Code here
+	    vector<pair<int,int>>p(n);
+	    for(int i=0;i<n;i++){
+	        p[i]={arr[i],i};
+	    }
+	    sort(p.begin(),p.end());
+	    int c=0;
+	    for(int i=0;i<n;i++){
+	        if(i!=p[i].second){
+	            c++;
+	            swap(p[i],p[p[i].second]);   //O(1)
+	            i--;
+	        }
+	    }
+	    return c;
+	}
+};
