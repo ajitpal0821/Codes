@@ -1,0 +1,31 @@
+// Code help from bharath
+
+class Solution{
+
+	public:
+	int findSwapValues(int A[], int n, int B[], int m)
+	{
+        // Your code goes here
+        int a=0,b=0;
+        for(int i=0;i<n;i++){
+        a=a+A[i];
+        }
+        unordered_map<int,int>mp;
+        for(int j=0;j<m;j++){
+            b=b+B[j];
+            mp[B[j]]=1;
+        }
+        for(int i=0;i<n;i++){
+            int bi=(b-a)/2+A[i];
+            if(((b-a)+2*A[i])%2==0 && mp.find(bi)!=mp.end() )//found
+            {// to check even 
+                return 1;
+            }
+            // else
+            
+        }
+        return -1;
+        
+	}
+
+};
