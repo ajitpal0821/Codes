@@ -29,3 +29,5 @@ class Solution{
 	}
 
 };
+// TC:O(2*n+m)
+//SC:O(n)
