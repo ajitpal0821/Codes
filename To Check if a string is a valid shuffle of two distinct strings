@@ -1,0 +1,38 @@
+// Code:on GDB
+
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    
+    string s1="XY";
+    string s2="12";
+    string ans="X2Y1";
+    int l1=s1.length();
+    int l2=s2.length();
+    int lr=ans.length();
+    
+    if(lr!=(l1+l2))
+    cout<<"False"<<endl;
+    else{
+        
+        int k=0,j=0,i=0,f=0;
+        while(k<lr){
+            if(i<l1 && s1[i]==ans[k])
+            i++;
+            else if(j<l2 && s2[j]==ans[k])
+            j++;
+            else{
+                f=1;
+                break;
+            }
+            k++;
+        }
+        if(i<l1 or j<l2)
+        cout<<"false";
+        else
+        cout<<"True"<<endl;
+    }
+}
+
