@@ -1,0 +1,31 @@
+//Code by myself
+
+class Solution {
+public:
+    int maxSubStr(string str){
+        //Write your code here
+        int z=0;
+        int o=0;
+        int count=0;
+        for(int i=0;i<str.length();i++){
+            
+            if(str[i]=='0')
+            z++;
+            if(str[i]=='1')
+            o++;
+            if(z==o)
+            {
+                z=0;
+                o=0;
+                count++;
+            }
+        }
+        if(count==0 or z!=0 or o!=0)
+        return -1;
+        else
+        return count;
+    }
+};
+//done myself ..
+//TC:O(n)
+//SC:O(1)
