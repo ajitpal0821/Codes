@@ -1,0 +1,36 @@
+// Code from Love Babbar
+
+class Solution
+{
+	public:
+	void solve(string S,set<string>&v,int index){
+	    if(index==S.length()){
+	        v.insert(S);
+	        return;
+	    }
+	    for(int j=index;j<S.size();j++){
+	        
+	       
+	        swap(S[j],S[index]);//abc ->bac
+	        solve(S,v,index+1);
+	        swap(S[j],S[index]);//bac->abc
+	    }
+	}
+		vector<string>find_permutation(string S)
+		{
+		    // Code here there
+		    int index=0;
+		    vector<string>v;
+		    set<string>ans;
+		  //  sort(S.begin(),S.end());
+		    solve(S,ans,index);
+		  v.assign(ans.begin(),ans.end());// values assigning to vector v
+		
+		   return v;
+		}
+};
+// 
+
+//Expected Time Complexity: O(n! * n)
+
+//Expected Space Complexity: O(n)
