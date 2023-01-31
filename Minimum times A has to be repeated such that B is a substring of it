@@ -1,0 +1,32 @@
+// Code Help from gfg
+
+
+class Solution {
+  public:
+    int minRepeats(string A, string B) {
+        // code here
+        int n=A.length();
+        int m=B.length();
+        
+        int ans;
+        ans=1;
+        string temp=A;
+        while(A.length()<B.length()){// check A size is increasing
+            A=A+temp;
+            ans++;
+        }
+            if(A.find(B)!=-1)
+            return ans;
+            
+           A=A+temp;
+            ans++;
+            
+        if(A.find(B)!=-1){
+            
+            return ans;
+        }
+            
+        return -1;
+        
+    }
+};
