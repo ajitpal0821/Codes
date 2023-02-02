@@ -1,0 +1,22 @@
+//Code:
+
+class Solution
+{
+    public:
+    //Function to reverse a linked list.
+    struct Node* reverseList(struct Node *head)
+    {
+        // code here
+        // return head of reversed list
+        struct Node*current=head,*ford=NULL,*prev=NULL;
+        while(current!=NULL){
+            ford=current->next;
+            current->next=prev;
+            prev=current;
+            current=ford;
+        }
+        head=prev;
+        return head;
+    }
+    
+};
