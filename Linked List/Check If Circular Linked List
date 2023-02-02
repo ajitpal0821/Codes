@@ -1,0 +1,15 @@
+//Code:
+
+bool isCircular(Node *head)
+{
+   // Your code here
+   if(head==NULL)
+   return 1;
+   struct Node*ans;
+   ans=head->next;
+   
+   while(ans!=NULL && ans!=head)
+   ans=ans->next;
+   
+   return (ans==head);
+}
