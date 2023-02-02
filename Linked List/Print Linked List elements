@@ -1,0 +1,15 @@
+//Code help from gfg
+
+class Solution
+{
+    public:
+    void display(Node *head)
+    {
+      //your code goes here
+      while(head!=NULL){
+          cout<<head->data<<" ";
+          head=head->next;
+      }
+    }
+};
+// rest approach in notebook /// never give up
