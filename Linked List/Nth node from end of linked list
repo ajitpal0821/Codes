@@ -1,0 +1,26 @@
+//Code:
+
+int getNthFromLast(Node *head, int n)
+{
+       // Your code here
+       int len=1;
+       struct Node*temp=head;
+       while(temp!=NULL){
+           len++;
+           temp=temp->next;
+       }
+       int ans=len-n;
+       int count=1;
+       struct Node*start=head;
+       while(start!=NULL)
+       {
+           if(count==ans)
+           return start->data;
+           
+           start=start->next;
+           count++;
+       }
+       return -1;
+}
+//TC:O(n)
+//SC:O(1)
