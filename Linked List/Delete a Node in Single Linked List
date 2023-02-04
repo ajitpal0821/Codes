@@ -1,0 +1,29 @@
+// Code by myself:
+
+
+Node* deleteNode(Node *head,int x)
+{
+    //Your code here
+    struct Node*temp=head,*prev;
+    int count=1;
+    if(x==1){
+    head=head->next;
+    return head;
+    }
+    while(temp!=NULL){
+        if(count==x){
+            struct Node*ans=temp->next;
+            prev->next=ans;
+            temp->next=NULL;
+            return head;
+        }
+        else{
+            count++;
+            prev=temp;
+        temp=temp->next;
+        
+    }
+}
+// return head;
+}
+// Just Think:
