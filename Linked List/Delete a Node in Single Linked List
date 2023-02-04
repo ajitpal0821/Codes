@@ -27,3 +27,5 @@ Node* deleteNode(Node *head,int x)
 // return head;
 }
 // Just Think:
+// TC:O(N)
+// SC:O(1)
