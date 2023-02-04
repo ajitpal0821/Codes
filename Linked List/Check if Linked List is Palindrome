@@ -1,0 +1,35 @@
+// Code by myself
+//first transverse and find length and create array of that size
+// and again traverse to fill array
+// now check palindrome condition
+
+class Solution{
+  public:
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        //Your code here
+        struct Node*temp=head;
+        int c=0,n;
+        while(temp!=NULL){
+            c++;
+            temp=temp->next;
+        }
+        n=c;
+        int arr[c];
+        struct Node*ans=head;
+        int i=0;
+        while(ans!=NULL && c>0){
+            arr[i]=ans->data;
+            // cout<<arr[i];
+            c--;
+            ans=ans->next;
+            i++;
+        }
+        for(int i=0;i<n;i++){
+            if(arr[i]!=arr[n-i-1])
+            return false;
+        }
+        return true;
+    }
+};
