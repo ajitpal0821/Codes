@@ -1,0 +1,46 @@
+//Code:
+// just tranverse the extra length in larger linkedklist rest same
+
+int intersectPoint(Node* head1, Node* head2)
+{
+    // Your Code Here
+    // 
+    struct Node*temp1=head1,*temp2=head2;
+    int n=0,m=0;
+    while(temp1!=NULL){
+        temp1=temp1->next;
+        n++;
+    }
+    while(temp2!=NULL){
+        temp2=temp2->next;
+        m++;
+    }
+    temp1=head1;
+    temp2=head2;
+    int diff=abs(n-m);
+    if(n>m ){
+        
+        while(diff-->0){
+            temp1=temp1->next;
+        }
+        
+    }
+    else{
+        
+        
+        while(diff-->0){
+            temp2=temp2->next;
+            
+        }
+        
+    }
+    while(temp1!=temp2){
+        temp1=temp1->next;
+        temp2=temp2->next;
+        
+        if(temp1==NULL || temp2==NULL)
+        return -1;
+    }
+    return temp2->data;
+    
+}// just think!
