@@ -1,0 +1,35 @@
+// just stick to basis
+
+class Solution{
+  public:
+    //Function to insert a node at the beginning of the linked list.
+    Node *insertAtBegining(Node *head, int x) {
+     
+    Node*temp=new Node(x);
+       temp->data=x;          TC:O(1)  SC:O(1)
+       temp->next=head;
+        head=temp;      // just think!
+       return head;
+    }
+    
+    
+    //Function to insert a node at the end of the linked list.
+    Node *insertAtEnd(Node *head, int x)  {
+       // Your code here
+        Node*news=new Node(x);// see new method to make node
+
+      if(head==NULL){  // if head is null return new node
+          return news;
+      }
+      else{
+          Node*temp=head ;              //TC:O(N) SC:O(1)
+       while(temp->next!=NULL){
+           temp=temp->next;
+       }
+       temp->next=news;
+      
+       
+       return head;
+      }
+    }
+};
