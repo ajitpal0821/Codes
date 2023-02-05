@@ -1,0 +1,31 @@
+// Code is based on concept
+
+void MyStack ::push(int x) 
+{
+    // Your Code
+     struct StackNode*temp;
+     temp=new StackNode(x);
+     temp->data=x;
+     temp->next=top;
+     top=temp;
+                  // |3|
+                   //|↓|
+                   //|2| //top
+                    //|_|
+}
+
+//Function to remove an item from top of the stack.
+int MyStack ::pop() 
+{
+    // Your Code
+    if(top==NULL)
+    return -1;
+    struct StackNode*temp;
+    temp=top;
+    top=top->next;
+    return temp->data;
+    free(temp);
+}
+// for both
+//TC:O(1)
+//SC:O(1)  
