@@ -1,0 +1,24 @@
+//Code explaination
+// if curr->data==curr->next->data;
+// make curr->next=curr->next->next;
+//else curr=curr->next
+// As array is sorted therefore duplicaes will lies closer
+
+
+Node *removeDuplicates(Node *head)
+{
+ // your code goes here
+ struct Node*curr=head;
+ while(curr->next!=NULL){
+     if(curr->data==curr->next->data){
+         curr->next=curr->next->next;
+     }
+     else
+     curr=curr->next;
+    
+ }
+ return head;
+}
+
+//TC:O(N)
+// SC:O(1)
