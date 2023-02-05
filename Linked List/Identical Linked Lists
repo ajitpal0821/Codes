@@ -1,0 +1,21 @@
+//Code is simple
+
+bool areIdentical(struct Node *head1, struct Node *head2)
+{
+    // Code here
+    struct Node*temp1=head1,*temp2=head2;
+    while(temp1!=NULL && temp2!=NULL){
+        if(temp1->data!=temp2->data)
+        return false;
+        temp2=temp2->next;
+        temp1=temp1->next;
+    }
+    if(temp1!=NULL or temp2!=NULL) // 1 2 3 4 5 // 1 2 3 4  if any temp is not empty
+    return false;
+    
+    return true;
+    
+}
+
+// TC:O(N)
+//SC:O(1)
