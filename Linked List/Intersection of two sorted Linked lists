@@ -1,0 +1,34 @@
+// Code By myself---Just Think
+
+Node* findIntersection(Node* head1, Node* head2)
+{
+    // Your Code Here
+    struct Node*temp1=head1,*temp2=head2;
+    unordered_map<int,int>mp;
+    while(temp1!=NULL){
+        mp[temp1->data]++;
+        temp1=temp1->next;
+    }
+    struct Node*head12=NULL,*prev;
+    while(temp2!=NULL){
+        if(mp.find(temp2->data)!=mp.end()&& mp[temp2->data]){
+           Node*temp=new Node(temp2->data);
+          mp[temp2->data]--;;
+            if(head12==NULL){
+                head12=temp;
+                prev=temp;
+            }
+            else{
+                // struct Node*ans=temp;
+                prev->next=temp;
+                prev=temp;
+                
+            }
+                
+        }
+                temp2=temp2->next;
+    }
+    return head12;
+}
+//TC:O(M+N)
+//SC:O(M+N)
