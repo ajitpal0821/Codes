@@ -1,0 +1,32 @@
+// Code was similar to remove duplicates from sorted ll
+// only diiference is that ,as duplicates lies far away therefore we have to used map to kepp track of elements
+
+//Code:
+
+class Solution
+{
+    public:
+    //Function to remove duplicates from unsorted linked list.
+    Node * removeDuplicates( Node *head) 
+    {
+     // your code goes here
+     struct Node*temp=head;
+     struct Node*prev=NULL;
+     unordered_map<int,int>mp;
+   
+     while(temp!=NULL){
+         if(mp[temp->data]){// I used find function :(
+             prev->next=temp->next;
+             temp=temp->next;
+         }
+         else{
+             mp[temp->data]=1;
+         prev=temp;
+         temp=temp->next;
+         }
+     }
+     return head;
+    }
+};
+// TC:O(N)
+//SC:O(N)
