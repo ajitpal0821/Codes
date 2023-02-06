@@ -1,0 +1,36 @@
+// Code by myself
+// Just Think
+
+//Code:
+class Solution{
+  public:
+    // Should return head of the modified linked list
+    Node *sortedInsert(struct Node* head, int data) {
+        // Code here
+        Node*node=new Node(data);
+        struct Node*temp=head;
+        if(data<=temp->data){
+            node->next=temp;
+            head=node;
+            return head;
+        }
+        struct Node*prev;
+        while(temp!=NULL){
+            if(temp->data>data){
+                prev->next=node;
+                node->next=temp;
+                return head;
+            }
+            else{
+                prev=temp;
+                temp=temp->next;
+            }
+        }
+        if(prev->data<=data){
+            prev->next=node;
+            return head;
+        }
+    }
+};
+//TC:O(N)
+//SC:O(1)
