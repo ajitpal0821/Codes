@@ -1,0 +1,44 @@
+//Code by myself
+// just think and write
+
+struct Node*temp=head;
+    int len=0;
+    while(temp!=NULL){
+        len++;
+        temp=temp->next;
+    }
+    int ans,c=0;
+    temp=head;
+    struct Node*prev;
+    if(len%2==0){
+        ans=len/2;
+        while(temp!=NULL){
+            if(c==ans){
+                prev->next=temp->next;
+                return head;
+            }
+            else{
+                c++;
+                prev=temp;
+                temp=temp->next;
+            }
+        }
+    }
+    else{
+         ans=(len)/2;
+        while(temp!=NULL){
+            if(c==ans){
+                prev->next=temp->next;
+                return head;
+            }
+            else{
+                c++;
+                prev=temp;
+                temp=temp->next;
+            }
+        }
+    }
+}
+
+//TC:O(N)
+//SC:O(1)
