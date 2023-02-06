@@ -1,0 +1,32 @@
+// code is based on slow and fast pointer concept
+
+// int countNodesinLoop(struct Node *head)
+{
+    // Code here
+    
+    // int len=0;
+    struct Node*slow=head;
+    struct Node*fast=head;
+    while(slow && fast &&  fast->next){
+    slow=slow->next;
+    fast=fast->next->next;
+    if(slow==fast){
+        int c=1;// head node as count 1
+    struct Node*temp=slow->next;
+    while(temp!=slow){
+        temp=temp->next;
+        c++;
+    }
+    return c;
+    }
+    }
+    return 0;
+
+}
+//TC:O(N) but my code has more
+//SC:O(1)
+
+// fast and slow pointer concept is used 
+//-finding starting node of loop
+//-length of loop
+//-inserting element in middle of linked list
