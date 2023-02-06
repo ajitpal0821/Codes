@@ -1,0 +1,24 @@
+//Code:
+// Simple Logic
+
+
+class Solution{
+public:
+    ListNode *moveToFront(ListNode *head){
+        struct ListNode*temp=head,*prev;
+        if(head->next==NULL)
+        return head;
+        while(temp->next!=NULL){// to keep second last node in prev node
+            prev=temp;
+            temp=temp->next;// last node in temp
+        }
+        prev->next=NULL;
+      ListNode*node=new ListNode(temp->val);
+        
+        node->next=head;
+        return node;
+        
+    }
+};
+//TC:O(N)
+//SC:O(1)
