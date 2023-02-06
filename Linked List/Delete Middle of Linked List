@@ -5,13 +5,13 @@ struct Node*temp=head;
     int len=0;
     while(temp!=NULL){
         len++;
-        temp=temp->next;
+        temp=temp->next;        //calculated length()
     }
     int ans,c=0;
     temp=head;
     struct Node*prev;
     if(len%2==0){
-        ans=len/2;
+        ans=len/2;   // node head is already in temp
         while(temp!=NULL){
             if(c==ans){
                 prev->next=temp->next;
