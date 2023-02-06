@@ -1,0 +1,16 @@
+// code is increase
+
+// Code:
+void deleteAlt(struct Node *head){
+    // Code here
+    
+    struct Node*temp=head;
+    while(temp!=NULL && temp->next!=NULL){
+     temp->next=temp->next->next;
+           temp=temp->next; 
+        }
+    
+   
+}
+//TC:O(N);
+//SC:O(1);
