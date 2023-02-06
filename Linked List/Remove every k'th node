@@ -1,0 +1,32 @@
+//Code:
+
+Node* deleteK(Node *head,int K)
+{
+  //Your code here
+  struct Node*temp=head,*prev;
+  Node*node=new Node(K);
+  int len=0;
+  if(K==1){
+     return NULL;  // elements will be deleted
+  }
+  if(K==0)
+  return head;
+  
+  while(temp!=NULL){
+     len++;
+     if(len%K==0){
+         prev->next=temp->next;
+         temp=temp->next;
+     }
+    else{
+         prev=temp;
+         temp=temp->next;
+    }
+  }
+  
+  return head;
+  
+  
+}
+//TC:O(n)
+//SC:O(1)
