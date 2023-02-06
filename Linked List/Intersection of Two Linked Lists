@@ -1,0 +1,38 @@
+//Code by myself
+// This is simple logic
+
+class Solution{
+  public:
+    Node* findIntersection(Node* head1, Node* head2)
+    {
+        // code here
+        // return the head of intersection list
+      map<int,int>mp;
+        struct Node*temp=head2;
+        while(temp!=NULL){
+            mp[temp->data]++;
+            temp=temp->next;
+        }
+        temp=head1;
+        struct Node*head12=NULL,*curr;
+        while(temp!=NULL){
+            if(mp[temp->data]){
+                Node*node=new Node(temp->data);
+                if(head12==NULL){
+                    head12=node;
+                    curr=node;
+                    
+                }
+                else{
+                    curr->next=node;
+                    curr=node;
+                }
+            }
+                    temp=temp->next;
+        }
+       
+        return head12;
+    }
+};
+//TC:O(N+M)
+//SC:O(N+M)
