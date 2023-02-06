@@ -1,0 +1,31 @@
+// Code By Myself
+
+//Code:
+
+int sumOfLastN_Nodes(struct Node* head, int n)
+{
+
+    struct Node*temp=head;
+      int len=0,sum=0;
+      while(temp!=NULL){
+              len++;
+              sum=sum+temp->data;
+              temp=temp->next;
+          }
+          temp=head;
+          int ans=0;
+          while(temp!=NULL){
+              if((len-n)!=ans){
+              ans++;
+              sum=sum-temp->data;
+              }
+              temp=temp->next;
+          }
+          
+         
+      return sum;
+      
+      
+}
+//TC:O(N)
+//SC:O(1)
