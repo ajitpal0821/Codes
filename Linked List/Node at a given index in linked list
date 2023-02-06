@@ -1,0 +1,16 @@
+// code is simple
+
+int GetNth(struct node* head, int index){
+  // Code here
+  struct node*temp=head;
+  int len=1;
+  while(temp!=NULL){
+      if(len==index)
+          return temp->data;
+      len++;
+      temp=temp->next;
+      
+  }
+}
+//TC:O(N)
+//SC:O(1)
