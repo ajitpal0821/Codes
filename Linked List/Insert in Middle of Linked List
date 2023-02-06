@@ -1,0 +1,43 @@
+//Code by myself
+
+// without fast and slow pointer
+
+Node* insertInMiddle(Node* head, int x)
+{
+	// Code here
+	struct Node*temp=head;
+	int len=0;
+	while(temp!=NULL){
+	    len++;
+	    temp=temp->next;
+	}
+	temp=head;
+	Node*node=new Node(x);
+	if(len==1){
+	temp->next=node;
+	return head;
+	}
+	int ans=0,c=0;
+	struct Node*prev;
+	ans=(len+1)/2;
+	while(temp!=NULL){
+	    if(c==ans){
+	        node->next=temp;
+	        prev->next=node;
+	        return head;
+	    }
+	    else{
+	        c++;
+	        prev=temp;
+	        temp=temp->next;
+	    }
+	}
+	temp->next=node;
+	
+	
+	return head;
+}
+ 
+ //TC:O(N)
+ //SC:O(1)
+
