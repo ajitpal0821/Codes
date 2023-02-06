@@ -42,3 +42,37 @@ struct Node*temp=head;
 
 //TC:O(N)
 //SC:O(1)
+
+
+
+
+// or
+
+Node* deleteMid(Node* head)
+{
+    // Your Code Here
+    struct Node*temp=head;
+    int len=0;
+    while(temp!=NULL){
+        len++;
+        temp=temp->next;
+    }
+    int ans,c=0;
+    temp=head;
+    struct Node*prev;
+    
+        ans=len/2;
+        while(temp!=NULL){
+            if(c==ans){
+                prev->next=temp->next;
+                return head;
+            }
+            else{
+                c++;
+                prev=temp;
+                temp=temp->next;
+            }
+        }
+    
+    
+}
