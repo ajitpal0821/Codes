@@ -1,0 +1,44 @@
+//Code;
+
+void deleteNode(struct Node **head, int key)
+{
+
+// Your code goes here
+struct Node*temp=*head,*prev=NULL;
+
+    while(temp!=NULL){
+        if(temp->data==key){
+            prev->next=temp->next;
+            delete(temp);
+            return;
+        }
+        else{
+            prev=temp;
+            temp=temp->next;
+        }
+    }
+    
+}
+
+
+
+/* Function to reverse the linked list */
+ void reverse(struct Node** head)     // 1 7 8 10      8
+{
+
+
+    Node* prev = NULL;
+    Node* curr = *head;  // for iterating Linkedlist
+    Node* temp = *head;   // reference of starting point of linkedlist
+
+    do{
+        Node* next = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = next;
+    }while(curr != temp);
+     
+    curr->next = prev;  // linking last node to first node
+    *head = prev;   
+
+}
