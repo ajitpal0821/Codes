@@ -1,0 +1,30 @@
+//Code 
+int fractional_node(struct Node *head, int k)
+{
+    // your code here
+    int len=0;
+    struct Node*temp=head;
+    while(temp!=NULL)
+    {
+        temp=temp->next;
+        len++;
+    }
+    int anse=(len)/k,anso=(len)/k+1,c=1,ans;
+    if(len%k==0)
+    ans=anse;
+    else
+    ans=anso;
+    temp=head;
+    while(temp!=NULL){
+    if(ans==c)
+        return temp->data;
+        else
+        
+        temp=temp->next;
+        c++;
+        }
+        return temp->data;
+    
+}
+//TC:O(N)
+//SC:O(1)
