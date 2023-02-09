@@ -1,0 +1,27 @@
+//Code:
+
+int longestSubstrDistinctChars (string S)
+{
+    // your code here
+    unordered_map<char,int>mp;
+    mp[S[0]]=0;
+    int n=S.length();
+    int c=1,res=1;
+   for(int i=1;i<n;i++){
+        if(mp.find(S[i])!=mp.end()){
+        c=0;
+        i=mp[S[i]];
+       mp.clear();
+        }
+        else{
+        c++;
+        res=max(res,c);
+        mp[S[i]]=i;
+        }
+       
+    }
+    return res;
+}
+
+//TC:O(S)
+//SC:O(K)
