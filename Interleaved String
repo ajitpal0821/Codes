@@ -1,0 +1,67 @@
+//{ Driver Code Starts
+//Initial template for C++
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// } Driver Code Ends
+//User function template for C++
+
+class Solution{
+  public:
+    /*You are required to complete this method */
+    bool ans(string A,string B,string C,int i,int j,int k,vector<vector<int>>&dp){
+        
+        if(dp[i][j]!=-1)
+        return dp[i][j];
+        if(i==A.length() && j==B.length() && k==C.length()){
+            return true;
+        }
+        bool x=false,y=false;
+        if(i!=A.length())
+        if(A[i]==C[k])
+        x=ans(A,B,C,i+1,j,k+1,dp);
+        
+        if(j!=B.length())
+        if(B[j]==C[k])
+        y=ans(A,B,C,i,j+1,k+1,dp);
+        
+        dp[i][j]=x||y;
+        return dp[i][j]=x||y;
+    }
+    bool isInterleave(string A, string B, string C) 
+    {
+        //Your code here
+        // if(A+B==C or B+A==C)
+        // return true;
+        // else
+        // return false;
+        
+        int n=A.length();
+        int m=B.length();
+        
+        vector<vector<int>>dp(n+1,vector<int>(m+1,-1));
+        
+       
+        return ans(A,B,C,0,0,0,dp);
+    }
+
+};
+
+//{ Driver Code Starts.
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		string a,b,c;
+		cin>>a;
+		cin>>b;
+		cin>>c;
+		Solution obj;
+		cout<<obj.isInterleave(a,b,c)<<endl;
+	}
+	// your code goes here
+	return 0;
+}
+// } Driver Code Ends
