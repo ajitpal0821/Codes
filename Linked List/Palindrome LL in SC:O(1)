@@ -1,0 +1,40 @@
+class Solution{
+  public:
+  Node*reverse(Node*temp){
+      Node*curr=temp,*nxt=NULL,*prev=NULL;
+      while(curr){
+          nxt=curr->next;
+          curr->next=prev;
+          prev=curr;
+          curr=nxt;
+      }
+      return prev;
+  }
+    //Function to check whether the list is palindrome.
+    bool isPalindrome(Node *head)
+    {
+        //Your code here
+        Node*temp=head;
+       Node* slow = head;
+    Node* fast = head;
+
+    while (fast->next != nullptr && fast->next->next != nullptr) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+        
+          Node*head2;
+        head2=reverse(slow->next);
+        slow->next=NULL;
+        while(head && head2){
+            if(head->data!=head2->data){
+                return false;
+            }
+            head=head->next;
+            head2=head2->next;
+        }
+        return true;
+    }
+};
+//TC:O(n)
+//SC:O(1)
