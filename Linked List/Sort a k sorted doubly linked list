@@ -1,0 +1,34 @@
+struct compare{
+    bool operator()(struct Node*p1,struct Node*p2){
+        return p1->data>p2->data;
+    }
+};
+Node *sortedDll(Node *head, int k)
+{
+    // Write your code here
+    Node*curr,*newhead=NULL;
+    priority_queue<Node*,vector<Node*>,compare>pq;
+    for(int i=0;i<=k && head!=NULL;i++){
+        pq.push(head);
+        head=head->next;
+    }
+    while(!pq.empty()){
+        if(newhead==NULL){
+            newhead=pq.top();
+            newhead->prev=NULL;
+            curr=newhead;
+        }
+        else{
+            curr->next=pq.top();
+            pq.top()->prev=curr;
+            curr=pq.top();
+        }
+        pq.pop();
+        if(head){
+            pq.push(head);
+            head=head->next;
+        }
+    }
+    curr->next=NULL;
+    return newhead;
+}
