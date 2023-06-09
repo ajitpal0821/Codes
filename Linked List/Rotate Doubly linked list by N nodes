@@ -1,0 +1,24 @@
+DLLNode* rotateDLL(DLLNode* head, int k) 
+{
+    // Write your code here.
+	DLLNode*temp=head;
+	while(temp->next){
+		temp=temp->next;
+
+	}
+	DLLNode*last=temp;
+	last->next=head;
+	head->prev=last;
+	temp=head;
+	while(k>1){
+		k--;
+		temp=temp->next;
+	}
+	head=temp->next;
+	temp->next=NULL;
+	head->prev=NULL;
+
+	return head;
+
+
+}
