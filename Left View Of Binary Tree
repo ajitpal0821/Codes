@@ -1,0 +1,20 @@
+void ans(Node*root,vector<int>&vec,int level){
+//   vector<int>vec;
+   if(root==NULL)
+   return ;
+   if(vec.size()==level){
+       
+   vec.push_back(root->data);
+   }
+    ans(root->left,vec,level+1);
+    ans(root->right,vec,level+1);
+    
+  }
+vector<int> leftView(Node *root)
+{
+   // Your code here
+   vector<int>vec;
+   int level=0;
+   ans(root,vec,0);
+   return vec;
+}
