@@ -1,0 +1,26 @@
+void order(Node*root,vector<int>&vec){
+       stack<Node*>s;
+    s.push(root);
+    stack<int>out;
+    while(!s.empty()){
+        Node*curr=s.top();
+        s.pop();
+        out.push(curr->data);
+        if(curr->left)
+        s.push(curr->left);
+        if(curr->right)
+        s.push(curr->right);
+        
+    }
+    while(!out.empty()){
+        vec.push_back(out.top());
+        out.pop();
+    }
+}
+vector <int> postOrder(Node* root)
+{
+  // Your code here
+  vector<int>vec;
+  order(root,vec);
+  return vec;
+}
