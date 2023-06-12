@@ -1,0 +1,26 @@
+ Node*ans(Node*node){
+        if(node==NULL)
+        return NULL;
+        Node*temp=node->right;
+      node->right=ans(node->left);
+      
+        node->left=ans(temp);
+        
+        // Node*ans=temp1;
+        
+        return node;
+    }
+    void mirror(Node* node) {
+        // code here
+        ans(node);
+        
+    }
+    
+    or
+      void mirror(Node* node) {
+        mirror(node->left);
+        mirror(node->right);
+        
+        swap(node->left,node->right);
+        
+    }
