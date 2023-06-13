@@ -1,0 +1,44 @@
+ vector <int> zigZagTraversal(Node* root)
+    {
+    	// Code here
+    	//similar to level order trnaversal
+    	 vector<int> vec;
+    if (root == NULL)
+        return vec;
+
+    queue<Node*> q;
+    q.push(root);
+    
+    bool flag = true;
+
+     while (!q.empty()) {
+        int size = q.size();
+        vector<int> ans;
+
+        for (int i = 0; i < size; i++) {
+            Node* temp = q.front();
+            // int curr_level = q.front().second;
+            q.pop();
+
+            if (flag) {
+                ans.push_back(temp->data);
+            }
+            else {
+           ans.insert(ans.begin(), temp->data);
+            }
+
+            if (temp->left) {
+                q.push(temp->left);
+            }
+            if (temp->right) {
+                q.push(temp->right);
+            }
+        }
+
+        flag = !flag;
+        vec.insert(vec.end(), ans.begin(), ans.end());
+        // vec.push_back(ans);/in case of return vrector of vector
+    }
+
+    return vec;
+}
