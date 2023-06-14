@@ -1,0 +1,17 @@
+TreeNode<int> *flattenBinaryTree(TreeNode<int> *root)
+{
+    // Write your code here.
+    TreeNode<int>*curr=root,*prev ;
+    while(curr){
+        if(curr->left!=NULL){
+            prev=curr->left;
+            while(prev->right)
+            prev=prev->right;
+
+            prev->right=curr->right;
+            curr->right=curr->left;
+        }
+        curr=curr->right;
+    }
+    return root;
+}
