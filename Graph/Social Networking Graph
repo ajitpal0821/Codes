@@ -1,0 +1,50 @@
+
+int bfs( int n,vector<int>adj[], int node, int dis) {
+  queue<int> q;
+  	vector<int>vis(n+1,0);
+
+q.push(node);
+vis[node]=1;
+int c=0;
+while(!q.empty()){
+	int nd=q.front();
+	q.pop();
+
+	// q.pop();
+	if(vis[nd]==dis+1){
+		c++;
+	}
+		
+	else if(vis[nd]>dis+1){
+		break;
+	}
+
+	for(auto it:adj[nd]){
+		if(vis[it]==0){
+
+                  q.push(it);
+				  vis[it]=vis[nd]+1;
+                }
+        }
+}
+return c;
+}
+vector<int> socialNetwork(vector<pair<int, int>> queries, int n, int e, int m, vector<pair<int, int>> edges)
+{
+	// Write your code here.
+	vector<int>adj[n+1];
+	for(int i=0;i<e;i++){
+		int u=edges[i].first;
+		int v=edges[i].second;
+
+		adj[u].push_back(v);
+		adj[v].push_back(u);
+	}
+
+
+	vector<int>ans;
+	for(int i=0;i<m;i++){
+	ans.push_back(bfs(n,adj,queries[i].first,queries[i].second));
+	}
+	return  ans;
+}
