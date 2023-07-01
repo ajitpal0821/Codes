@@ -1,0 +1,31 @@
+#include <bits/stdc++.h> 
+void heapify(vector<int>&arr,int i,int n){
+    int lar=i;
+    int left=2*i+1;
+    int right=2*i+2;
+
+    if(left<n && arr[lar]>arr[left])
+    lar=left;
+
+    if(right<n && arr[lar]>arr[right])
+    lar=right;
+
+    if(lar!=i){
+        swap(arr[i],arr[lar]);
+        heapify(arr, lar,  n);
+    }
+    
+}
+vector<int> buildMinHeap(vector<int> &arr)
+{
+    // Write your code here
+    int n=arr.size();
+    for(int i=arr.size()-1;i>=0;i--){
+        heapify(arr,i,n);
+            }
+    vector<int>ans;
+    for(int i=0;i<n;i++){
+        ans.push_back(arr[i]);
+    }
+    return ans;
+}
