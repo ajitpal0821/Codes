@@ -1,0 +1,48 @@
+// Implement class for MedianFinder.
+#include <bits/stdc++.h>
+class MedianFinder{
+	
+	// Write your code here.
+		// max Heap--small heap
+
+		// min -heap--Large heap
+		priority_queue<int>maxpq;
+		priority_queue<int,vector<int>,greater<int>>minpq;
+	
+		double median;
+	public:
+
+	MedianFinder(){
+		// Write your code here.
+
+
+	} ;
+	// Function to add the integer ‘num’ to the data structure.
+	void addNum(int num){
+		// Write your code here.
+		if(maxpq.empty() || maxpq.top()>num)
+		maxpq.push(num);
+		else
+		minpq.push(num);
+			
+			if(maxpq.size()>minpq.size()+1){
+			minpq.push(maxpq.top());
+			maxpq.pop();
+		}
+                if (maxpq.size() + 1 < minpq.size()) {
+                  maxpq.push(minpq.top());
+                  minpq.pop();
+                }
+        }
+        // Funtion that returns the median of all elements so far.
+	double findMedian(){
+		// Write your code here.
+		if(maxpq.size()>minpq.size())
+		return maxpq.top();
+		else if(maxpq.size()<minpq.size())
+		return minpq.top();
+		else
+		return double(maxpq.top())/2+double(minpq.top())/2;
+	}
+	
+};
