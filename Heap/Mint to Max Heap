@@ -1,0 +1,25 @@
+void heap(long *arr,int n,int &i){
+    int lar=i;
+    int left=2*i+1;
+    int right=2*i+2;
+
+
+    if(left>=n)
+    return;
+    if(left<n &&  arr[i]<arr[left])
+    lar=left;
+     if(right<n && arr[lar]<arr[right])  // checking right > root && >right >root
+    lar=right;
+     if(lar!=i){
+        swap(arr[i],arr[lar]);
+        heap(arr,n,lar);
+    }
+  
+}
+void minHeapToMaxHeap(long *arr, int n)
+{
+    //Write your code here
+    for(int i=n/2;i>=0;i--){
+        heap(arr,n,i);
+    }
+}
