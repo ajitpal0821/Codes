@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+class cmp{
+    public:
+  bool operator()(pair<int, string> &a, pair<int, string> &b) {
+    if (a.first == b.first)
+      return a.second > b.second;
+    else
+      return a.first < b.first;
+  }
+};
+vector<string> kMostFreqWords(string words[], int n, int k) {
+  // Write your code here.
+  unordered_map<string, int> mp;
+  for (int i = 0; i < n; i++) {
+    mp[words[i]]++;
+  }
+  priority_queue<pair<int, string>, vector<pair<int, string>>, cmp> pq;
+  int i = 0;
+  for (auto it : mp) {
+    
+      pq.push({it.second, it.first});
+      if(i>k)
+      pq.pop();
+    
+  }
+  vector<string> ans;
+  while (i<k) {
+    ans.push_back(pq.top().second);
+    i++;
+    pq.pop();
+  }
+
+  return ans;
+}
