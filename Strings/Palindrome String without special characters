@@ -1,0 +1,35 @@
+#include <bits/stdc++.h> 
+#include<iostream>
+#include<cctype>
+// char toLower(char ch){
+//     if(ch>='a' && ch<='z')
+//     return ch;
+//     else {
+//         char temp=ch-'A'+'a';
+//         return temp;
+//     }
+    
+// }
+bool checkPalindrome(string s)
+{
+    // Write your code here.
+    string ss;
+    int n=s.size();
+    for(int i=0;i<s.size();i++){
+          if((s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z')   || (s[i] >= '0' && s[i] <= '9'))            
+           ss.push_back(s[i]);          
+
+}
+        
+    int i=0,j=ss.size()-1; // size of string here
+    while(i<=j){
+        if(tolower(ss[i])!=tolower(ss[j]))
+        return false;
+
+        else {
+          i++;
+          j--;
+        }
+    }
+    return true;
+}
