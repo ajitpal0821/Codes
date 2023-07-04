@@ -1,0 +1,42 @@
+class Solution
+{
+    public:
+    //Function to insert heap.
+    priority_queue<int,vector<int>,greater<int>>minpq;//minheap for large heap
+    priority_queue<int>maxpq; // maxheap for small heap
+    void insertHeap(int &x)
+    {
+        if(maxpq.size()==0 || maxpq.top()>=x)
+        maxpq.push(x);
+        else
+        minpq.push(x);
+        
+         balanceHeaps();
+    }
+    
+    //Function to balance heaps.
+    void balanceHeaps()
+    {
+        if(maxpq.size()>1+minpq.size()){
+            minpq.push(maxpq.top());
+            maxpq.pop();
+        }
+        else if(maxpq.size()<minpq.size()){
+            maxpq.push(minpq.top());
+            minpq.pop();
+        }
+    }
+    
+    //Function to return Median.
+    double getMedian()
+    {
+        
+        if(maxpq.size()==minpq.size())
+        {
+            return ((maxpq.top()+minpq.top())/2.0);
+        }
+       
+        return maxpq.top();
+        
+    }
+};
