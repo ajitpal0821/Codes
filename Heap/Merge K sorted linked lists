@@ -1,0 +1,33 @@
+Node * mergeKLists(Node *arr[], int k)
+    {
+           
+           
+           priority_queue<pair<int,Node*>,vector<pair<int,Node*>>,greater<pair<int,Node*>>>pq;
+           for(int i=0;i<k;i++){
+               if(arr[i])
+               pq.push({arr[i]->data,arr[i]});// pushed first element of all ll
+           }
+           Node*head=NULL;
+           Node*temp;
+           while(!pq.empty()){
+               auto start=pq.top();
+            //   int ele=pq.top()->data;
+               pq.pop();
+               
+               if(head==NULL){
+               head=start.second;
+               temp=head;
+               }
+               else{
+               temp->next=start.second;
+               temp=temp->next;
+               }
+               
+               if(start.second->next){
+                   pq.push({start.second->next->data,start.second->next});
+               }
+              
+               
+           }
+           return head;
+    }
