@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+int findMinimumCost(string str) {
+  // Write your code here
+      if (str.size() % 2 != 0) {
+        return -1;
+    }
+  int n = str.size();
+        
+  stack<int> s;
+  for (int i = 0; i < n; i++) {
+    // if(str[i]=='{')
+    if (!s.empty() && s.top() == '{' && str[i] == '}') {
+      s.pop();
+    } else
+      s.push(str[i]);
+  }
+   
+     
+      //Not possible to transform into a balanced string
+  int ub=0;
+  while(!s.empty()){
+    int topp=s.top();
+    s.pop();
+    if(!s.empty() && topp=='{' && s.top()=='}'){
+      ub+=2;
+      s.pop();
+    } else {
+      ub += 1;
+      s.pop();
+    }
+  }
+ return ub;
+}
