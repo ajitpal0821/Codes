@@ -1,0 +1,20 @@
+#include <bits/stdc++.h> 
+bool splitString(string &str){
+    // Write your code here.
+    vector<int>vec;//even length
+    for(int i=0;i<str.size();i++){
+        if(str[i]=='a' || str[i]=='i' || str[i] =='o' || str[i]=='u' || str[i]=='e' ||
+       str[i]=='A' || str[i]=='I' || str[i] =='O' || str[i]=='U' || str[i]=='E' ){
+            vec.push_back(i);
+        }
+    }
+    int mid=str.size()/2;
+    int c=0;
+    for(int i=0;i<vec.size();i++){
+        if(vec[i]<mid)
+        c++;
+        else
+        c--;
+    }
+    return c==0;
+}
