@@ -1,0 +1,24 @@
+#include<stack>
+#include <bits/stdc++.h> 
+string encode(string &m)
+{
+    //   Write your code here.
+    string ans = "";
+    int n = m.size();
+    int count = 1;
+//tricky logic
+    for (int i = 1; i < n; i++) {
+        if (m[i] == m[i - 1]) {
+            count++;
+        } else {
+            ans += m[i - 1] + to_string(count);
+            count = 1;
+        }
+    }
+
+    ans += m[n - 1] + to_string(count);// for last element
+
+
+    return ans;
+}
+            
