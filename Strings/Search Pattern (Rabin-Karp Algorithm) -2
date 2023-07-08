@@ -1,0 +1,38 @@
+#include<math.h>
+vector<int> stringMatch(string text, string pattern) {
+	// Write your code here.
+
+	int N = text.length(); // long string
+    int M = pattern.length(); // short string
+
+    int wind = M;
+    vector<int> ans;
+
+	int phash=0;
+	int ftext=0;
+	// int p=M-1;
+    for (int i = 0; i < M; i++) {
+        // int weak = pat[i] - 'a';
+ 		phash =(phash+ (pattern[i]-'a'))%13;
+		ftext = (ftext+(text[i]-'a'))%13;
+       
+    }
+   
+
+    int j = 0;
+    for (int i = 0; i <= N - M; i++) {
+        if (phash == ftext) {
+            for (j = 0; j < M; j++) {
+                if (pattern[j] != text[i + j])
+                    break;
+            }
+        if (j == M)
+            ans.push_back(i + 1);
+        }
+        
+            ftext = (ftext - (text[i] - 'a') + (text[i + M] - 'a'))%13;
+        if (ftext < 0)
+        ftext = (ftext + 13);
+    }
+    return ans;
+}
