@@ -1,0 +1,24 @@
+#include <bits/stdc++.h> 
+bool areAnagram(string &str1, string &str2){
+    // Write your code here.
+    int arr[26]={0};
+    int n=str1.size();
+    int m=str2.size();
+
+    if(n!=m)
+    return 0;
+    for(int i=0;i<n;i++){
+        arr[str1[i]-'a']++;
+    }
+    for(int i=0;i<m;i++){
+       if(arr[str2[i]-'a']!=0)
+       arr[str2[i]-'a']--;
+    }
+    for(int i=0;i<n;i++){
+        if(arr[str1[i]-'a']!=0)
+        return 0;
+        
+    }
+    return 1;
+    
+}
