@@ -1,0 +1,24 @@
+
+class Solution{
+  public:
+    vector<vector<string> > Anagrams(vector<string>& string_list) {
+        //code here
+        unordered_map<string,vector<string>>mp;
+        int n=string_list.size();
+        
+        for(int i=0;i<n;i++){
+            string val=string_list[i];
+            sort(val.begin(),val.end());
+            mp[val].push_back(string_list[i]);
+        }
+        
+        vector<vector<string>>ans;
+        for(auto it:mp){
+            auto vec=it.second;
+            ans.push_back(vec);
+        }
+        return ans;
+    }
+};
+
+//{ Driver Code Starts.
