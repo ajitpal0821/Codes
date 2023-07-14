@@ -1,0 +1,31 @@
+class Solution {
+public:
+
+    int test(int m, int n, string &s1, string &s2,int dp[][1001])
+    {
+        // your code here
+        if(m==0 or n==0)
+        return 0;
+        
+        if(dp[m][n]!=-1)
+        return dp[m][n];
+        
+        if(s1[m-1]==s2[n-1])
+        return dp[m][n]=1+test(m-1,n-1,s1,s2,dp);
+        else
+        return dp[m][n]=max(test(m-1,n,s1,s2,dp),test(m,n-1,s1,s2,dp));
+        
+    }
+    int longestCommonSubsequence(string x, string y) {
+        
+        int n=x.length();
+        int m=y.length();  
+    
+        // your code here
+int  dp[1001][1001]; 
+        memset(dp,-1,sizeof(dp));
+       return test( n,m,x,y,dp);
+        
+    }
+    
+};
