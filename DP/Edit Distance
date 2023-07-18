@@ -1,0 +1,39 @@
+int editDistance(string str1, string str2)
+{
+
+    //write you code here
+    int n=str1.length();
+    int m=str2.length();
+    if(n==0)
+    return m;
+    else if(m==0)
+    return n;
+
+        int dp[n+1][m+1]={0};
+    for(int i=0;i<n;i++){
+        dp[i][m]=n-i;
+    }
+
+    for(int j=0;j<m;j++){
+        dp[n][j]=m-j;
+    }
+    for(int i=n-1;i>=0;i--){
+        for(int j=m-1;j>=0;j--){
+int ans=0;
+            if(str1[i]==str2[j]){
+                ans=dp[i+1][j+1];
+            }
+            else
+            {
+                    int inserts=dp[i][j+1]+1;
+                    int deletes=dp[i+1][j]+1;
+                    int replaces=dp[i+1][j+1]+1;
+                    
+            ans=min(inserts,min(deletes,replaces));
+            }
+
+        dp[i][j]=ans;
+        }
+    }
+    return dp[0][0];    
+}
