@@ -1,0 +1,38 @@
+#include <bits/stdc++.h>
+static int dp[1001][1001];
+bool palin(string s,int i,int j){
+   while(j>i){
+        if(s[i]!=s[j]){
+            return false;
+        }
+        else{
+            i++;
+            j--;
+        }
+   }
+return true;
+    }
+
+int solve(string s,int i,int j){
+    if(i>=j)
+    return dp[i][j]=0;//for empty & single element
+
+    if(dp[i][j]!=-1)
+    return dp[i][j];
+    if(palin(s,i,j))
+    return dp[i][j]=0;
+    int mini=INT_MAX;
+    for(int k=i;k<=j-1;k++){
+        int temp=solve(s,i,k)+solve(s,k+1,j)+1;
+        mini=min(mini,temp);
+    }
+    return dp[i][j]=mini;
+}
+int palindromePartitioning(string str) {
+    // Write your code here
+    int n=str.length();
+    // int dp[n]={-1};
+    memset(dp,-1,sizeof(dp));
+    return solve(str,0,n-1);
+
+}
