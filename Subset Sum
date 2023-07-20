@@ -1,0 +1,20 @@
+void ans(int i,int sum,vector<int>&num,int n,vector<int>&s){
+
+	if(i==n){
+		s.push_back(sum);
+		return;
+	}
+	//pick
+	ans(i+1,sum+num[i],num,n,s);
+	ans(i+1,sum,num,n,s); // not pick
+
+}
+
+vector<int> subsetSum(vector<int> &num){
+	// Write your code here.
+	vector<int>s;
+	int n=num.size();
+	ans(0,0,num,n,s);
+	sort(s.begin(),s.end());
+	return s;	
+}
