@@ -1,0 +1,19 @@
+#include <bits/stdc++.h> 
+int uniqueSubstrings(string input)
+{
+    //Write your code here
+    int n=input.size();
+    set<char>s;
+    int maxi=0;
+    int left=0;
+    for(int i=0;i<n;i++){
+
+        while(s.count(input[i])>0){
+            s.erase(input[left]);
+            left++;
+        }
+        s.insert(input[i]);
+        maxi=max(maxi,i-left+1);
+    }
+    return maxi;
+}
