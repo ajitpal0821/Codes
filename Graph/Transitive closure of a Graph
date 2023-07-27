@@ -1,0 +1,33 @@
+class Solution{
+public:
+void dfs(vector<vector<int>>adj,vector<vector<int>>&vec,int i,int j){
+    for(auto x:adj[j]){
+        if(vec[i][x]==0){
+            vec[i][x]=1;
+            dfs(adj,vec,i,x);
+        }
+    }
+}
+    vector<vector<int>> transitiveClosure(int N, vector<vector<int>> graph)
+    {
+        // code here
+        vector<vector<int>>vec(N,vector<int>(N,0));
+        vector<vector<int>>adj(N);
+        for(int i=0;i<N;i++){
+            for(int j=0;j<N;j++){
+                if(i!=j){
+                    if(graph[i][j]==1)
+                    adj[i].push_back(j);
+                }
+            }
+        }
+        for(int i=0;i<N;i++){
+            vec[i][i]=1;
+        }
+        // int vis[N]={0};
+        for(int i=0;i<N;i++){
+            dfs(adj,vec,i,i);
+        }
+        return vec;
+    }
+};
