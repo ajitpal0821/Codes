@@ -1,0 +1,43 @@
+#include <bits/stdc++.h> 
+vector<int> searchInSortedArray(vector<int> &arr, int n, vector<int> &queries, int q)
+{
+	// Write your code here.
+	// unordered_set<int>s;
+	// for(int i=0;i<n;i++){
+	// 	s.insert(arr[i]);
+	// }
+	// vector<int>ans;
+	// for(int i=0;i<q;i++){
+	// 	if(s.find(queries[i])!=s.end())
+	// 	ans.push_back(1);
+	// 	else
+	// 	ans.push_back(0);
+
+	// }
+	// return ans;
+
+
+vector<int>ans;
+for(int i=0;i<q;i++){	
+	int low=0,end=n-1;
+	int mid=(low+end)/2;
+	bool flag =false;
+	while(low<=end){
+		if(arr[mid]==queries[i]){
+			flag=true;
+			ans.push_back(1);
+			break;
+                } else if (queries[i] < arr[mid]) {
+                        end = mid - 1;
+                } else
+                        low = mid + 1;
+
+						 mid=(low+end)/2;
+
+        }
+		if(!flag)
+						 ans.push_back(0);
+}
+
+        return ans;
+}
