@@ -1,0 +1,27 @@
+#include <bits/stdc++.h> 
+void dfs(vector<vector<int>> image,vector<vector<int>>&ans,int n,int m,int x,int y,int p,int val){
+	ans[x][y]=p;
+int r[]={-1,0,1,0};
+int c[]={0,1,0,-1};
+for(int i=0;i<4;i++){
+	int nr=r[i]+x;
+	int nc=c[i]+y;
+	if(nr>=0 && nc>=0 && nr<n && nc<m && image[nr][nc]==val && ans[nr][nc]!=p){
+		// ans[x][y]=p;
+		dfs(image,ans,n,m,nr,nc,p,val);
+	}
+}
+
+}
+vector<vector<int>> floodFill(vector<vector<int>> &image, int n, int m, int x, int y, int p) {
+	// Write your code here.
+	vector<vector<int>>ans(n,vector<int>(m,0));
+	for(int i=0;i<n;i++){
+		for(int j=0;j<m;j++){
+			ans[i][j]=image[i][j];
+		}
+	}
+	int val=image[x][y];
+	dfs(image,ans,n,m,x,y,p,val);
+	return ans;
+}
