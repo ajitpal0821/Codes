@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+void dfs(char **arr, vector<vector<int>>&vis, int i, int j, int n, int m);
+void replaceOWithX(char** arr, int n, int  m)
+{
+    //Write your code here  
+    // int j=0; 
+  vector<vector<int>>vis(n,vector<int>(m,0));
+    for(int i=0;i<n;i++){
+    // columns wise
+        if(arr[i][0]=='O' && !vis[i][0]){
+            // vis[i][j]=1;
+            dfs(arr,vis,i,0,n,m);
+        }
+        if( arr[i][m-1]=='O' && !vis[i][m-1]){
+                // vis[i][m-1]=1;
+            dfs(arr,vis,i,m-1,n,m);
+        }
+    }
+    for(int i=0;i<m;i++){
+        if(arr[0][i]=='O' && !vis[0][i]){
+            // vis[0][i]=1;
+            dfs(arr,vis,0,i,n,m);
+        }
+        if( arr[n-1][i]=='O' && !vis[n-1][i]){
+               
+            dfs(arr,vis,n-1,i,n,m);
+        }
+    }
+
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(vis[i][j]==0 && arr[i][j]=='O')
+            arr[i][j]='X';
+        }
+    }
+
+
+}
+void dfs(char **arr,vector<vector<int>>&vis,int i,int j,int n,int m){
+     vis[i][j]=1;
+    int r[]={-1,0,1,0};
+    int c[]={0,1,0,-1};
+
+    for(int k=0;k<4;k++){
+int nr=r[k]+i;
+int nc=c[k]+j;
+        if(nr>=0 && nr<n && nc>=0 && nc<m && arr[nr][nc]=='O' && vis[nr][nc]==0){
+            // vis[nr][nc]=1;
+            dfs(arr,vis,nr,nc,n,m);
+        }
+    }
+}
