@@ -1,0 +1,43 @@
+void bfs(vector < vector < int >>  mat,vector<vector<int>>&vis,vector<vector<int>>&dist,int n,int m)
+{
+    queue<pair<pair<int,int>,int>>q;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(mat[i][j]==1){
+            q.push({{i,j},0});
+            //   dist[i][j]=0;  
+              vis[i][j]=1;
+            }
+        }
+    }
+    int r[]={-1,0,1,0};
+    int c[]={0,-1,0,1};
+    int t=0;
+    while(!q.empty()){
+        int i1=q.front().first.first;
+        int j1=q.front().first.second;
+        int s=q.front().second;
+        q.pop();
+        dist[i1][j1]=s;
+    for(int i=0;i<4;i++){
+        int nr=r[i]+i1;
+        int nc=c[i]+j1;
+        
+        if(nr>=0 && nr<n && nc>=0 && nc<m  && !vis[nr][nc]){
+            q.push({{nr,nc},s+1});
+            vis[nr][nc]=1;
+
+        } 
+    
+    }
+        
+    }
+}
+vector < vector < int > > nearest(vector < vector < int >> & mat, int n, int m) {
+    // Write your code here.
+    vector<vector<int>>vis(n,vector<int>(m,0));
+    vector<vector<int>>dist(n,vector<int>(m,0));
+    
+    bfs(mat,vis,dist,n,m);
+    return dist;
+}
