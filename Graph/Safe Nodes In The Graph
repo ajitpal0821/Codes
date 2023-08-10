@@ -1,0 +1,48 @@
+#include <bits/stdc++.h> 
+bool dfs(int vis[],int path[],vector<int>adj[],int node,int check[])
+{
+    vis[node]=1;
+    path[node]=1;
+    check[node]=0;
+    for(auto it:adj[node]){
+        if(!vis[it]){
+          if (dfs(vis, path, adj, it, check) == true) {
+              check[node]=0;
+            return true;
+          }
+        }
+
+        else if (path[it] == 1) {
+        check[node]=0;
+          return true;
+        }
+        }
+        check[node]=1;
+        path[node]=0;
+        return false;
+}
+vector<int> safeNodes(vector<vector<int>> &edges, int n, int e) {
+    // Write your code here.
+    vector<int>adj[n];
+    for(int i=0;i<e;i++){
+        int u=edges[i][0];
+        int v=edges[i][1];
+
+        adj[u].push_back(v);
+
+    }
+    int check[n]={0};
+    int vis[n]={0};
+    int path[n]={0};
+    for(int i=0;i<n;i++){
+        if(!vis[i]){
+            dfs(vis,path,adj,i,check);
+        }
+    }
+    vector<int>ans;
+    for(int i=0;i<n;i++){
+        if(check[i]==1)
+        ans.push_back(i);
+    }
+    return ans;
+}
