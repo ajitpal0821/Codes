@@ -1,0 +1,76 @@
+class DisjointSet{
+	vector<int>rank,parent;
+	public:
+		
+		DisjointSet(int n){
+			rank.resize(n+1,0);
+			parent.resize(n+1,0);
+			for(int i=1;i<=n;i++){
+				parent[i]=i;
+			}
+		}
+		
+		int findPar(int node){
+			if(parent[node]==node)
+			return node;
+			// O(1) time using below
+		return	parent[node]=findPar(parent[node]);// path compression to decrease time complexity
+		}
+		
+		void unions(int u,int v){
+			int ulp_u=findPar(u);
+			int ulp_v=findPar(v);
+			
+			if(ulp_u==ulp_v){
+				return ;// same set
+			}
+			else if(rank[ulp_u]>rank[ulp_v]){
+				parent[ulp_v]=ulp_u;
+			}
+			else if(rank[ulp_v]>rank[ulp_u]){
+					parent[ulp_u]=ulp_v;
+			}
+			else if(rank[ulp_v]==rank[ulp_u]) 
+				parent[ulp_v]=ulp_u;
+				rank[ulp_u]++;
+			
+		}
+};
+vector<int> numberOfIslandII(int n, int m, vector<vector<int>>& queries, int q)
+{
+    // Write your code here.
+    vector<vector<int>>vis(n,vector<int>(m,0));
+    vector<int>ans;
+    DisjointSet s(n*m);
+    int cnt=0;
+    int r[]={0,-1,0,1};
+    int c[]={-1,0,1,0};
+    for(int i=0;i<q;i++){
+        int u=queries[i][0];
+        int v=queries[i][1];
+        if (vis[u][v] == 1) {
+                    ans.push_back(cnt);
+                    continue;
+        }
+    
+            vis[u][v]=1;
+                    cnt++;
+            for(int i=0;i<4;i++){
+                int nr=r[i]+u;
+                int nc=c[i]+v;
+                if(nr>=0 && nr<n && nc>=0 && nc<m ){
+                    if(vis[nr][nc]==1){
+                        int nodeNo=u*m+v;
+                        int adjNo=nr*m+nc;
+                        if (s.findPar(nodeNo) != s.findPar(adjNo)) {
+                          cnt--; // CONNECTING // decreasing land
+                          s.unions(nodeNo, adjNo);
+                        }
+                    }
+                }
+            }
+            ans.push_back(cnt);
+       
+    }
+    return ans;
+}
