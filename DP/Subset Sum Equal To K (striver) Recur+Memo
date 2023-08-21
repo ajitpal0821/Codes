@@ -1,0 +1,26 @@
+bool recur(int i, int k, vector<int> &arr,vector<vector<int>>&dp) {
+  if (k == 0)
+    return 1;
+    if(k<0)
+    return 0;
+  if (i == 0)
+    return (arr[0]==k);
+
+    if(dp[i][k]!=-1)
+    return dp[i][k];
+
+  bool not_take = recur(i - 1, k, arr,dp);
+
+  bool take = 0;
+  if(arr[i]<=k)
+  take = recur(i - 1, k - arr[i], arr,dp);
+
+    return dp[i][k]=take || not_take;
+}
+bool subsetSumToK(int n, int k, vector<int> &arr) {
+    vector<vector<int>>dp(n,vector<int>(k+1,-1));
+ return recur(n-1,k,arr, dp);
+
+
+
+}
