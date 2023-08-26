@@ -1,0 +1,40 @@
+vector<int> divisibleSet(vector<int> &nums)
+{
+    // Write your code here.
+    // vector<int> printingLongestIncreasingSubsequence(vector<int> nums, int n) {
+	// Write your code here
+    int n=nums.size();
+	vector<int>dp(n,1);
+	int hash[n];
+        int maxi=1;
+		int lastindex=0;
+        sort(nums.begin(),nums.end());
+        for(int index=0;index<n;index++){
+			hash[index]=index;
+            for(int prev=0;prev<index;prev++){
+                if(nums[index]%nums[prev]==0 && dp[index]<1+dp[prev]){
+                    dp[index]=1+dp[prev];
+					hash[index]=prev;
+                }
+            }
+                    // maxi=max(maxi,dp[index]);
+					if(dp[index]>maxi){
+						maxi=dp[index];
+						lastindex=index;
+					}
+        }
+        // return maxi;
+		vector<int>temp;
+		temp.push_back(nums[lastindex]);
+		while(hash[lastindex]!=lastindex){
+			lastindex=hash[lastindex];
+			temp.push_back(nums[lastindex]);
+
+		}
+		reverse(temp.begin(),temp.end());
+		return temp;
+    
+
+
+
+}
