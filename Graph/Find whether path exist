@@ -1,0 +1,52 @@
+class Solution
+{
+    public:
+    //Function to find whether a path exists from the source to destination.
+    bool is_Possible(vector<vector<int>>& grid) 
+    {
+        //code here
+        int di=0,dj=0;
+        int n=grid.size();
+        int m=grid[0].size();
+        queue<pair<int,int>>pq;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(grid[i][j]==1)
+                {
+                    pq.push({i,j});
+                    // break;
+                }
+                if(grid[i][j]==2){
+                    di=i;
+                    dj=j;
+                }
+            }
+        }
+        int r[]={-1,0,1,0};
+        int c[]={0,1,0,-1};
+        vector<vector<int>>vis(n,vector<int>(m,0));
+        bool flag=false;
+        while(!pq.empty()){
+            int i_p=pq.front().first;
+            int j_p=pq.front().second;
+            pq.pop();
+            
+        for(int k=0;k<4;k++){
+            int nr=i_p+r[k];
+            int nc=j_p+c[k];
+            
+            if(nr>=0 && nr<n && nc>=0 && nc<m & !vis[nr][nc]){
+                if(nr==di && nc==dj){
+                   return true;
+                }
+                if(grid[nr][nc]==3){
+                pq.push({nr,nc});
+                vis[nr][nc]=1;
+                }
+            }
+        }
+        }
+        return false;
+    }
+};
+
