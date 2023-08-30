@@ -1,0 +1,40 @@
+
+
+class Solution{   
+public:
+    int minIteration(int N, int M, int x, int y){    
+        // code here
+        vector<vector<int>>grid(N,vector<int>(M,0));
+        grid[x-1][y-1]=1;
+        int cnt =(N*M)-1;
+        queue<pair<pair<int,int>,int>>pq;
+        pq.push({{x-1,y-1},0});
+        int r[]={-1,0,1,0};
+        int c[]={0,-1,0,1};
+        if(N*M==1)
+        return 0;
+        vector<vector<int>>vis(N,vector<int>(M,0));
+        vis[x-1][y-1]=1;
+        while(!pq.empty()){
+            int ii=pq.front().first.first;
+            int jj=pq.front().first.second;
+            int dis=pq.front().second;
+            pq.pop();
+            
+            for(int i=0;i<4;i++){
+                int nr=ii+r[i];
+                int nc=jj+c[i];
+                if(nr>=0 && nr<N && nc>=0 && nc<M && !vis[nr][nc]){
+                    vis[nr][nc]=1;
+                    cnt--;
+                    if(cnt==0)
+                    return dis+1;
+                    pq.push({{nr,nc},dis+1});
+                }
+            }
+            
+        }
+        
+    }
+};
+
