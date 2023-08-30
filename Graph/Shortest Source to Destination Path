@@ -1,0 +1,42 @@
+Shortest Source to Destination Path
+class Solution {
+  public:
+    int shortestDistance(int N, int M, vector<vector<int>> A, int X, int Y) {
+        // code here
+        
+         vector<vector<int>>vis(N,vector<int>(M,0));
+        queue<pair<pair<int,int>,int>>q;
+       
+      
+                q.push({{0,0},0});
+       
+        if(A[0][0]==0)
+        return -1;
+        int r[]={-1,0,1,0};
+        int c[]={0,-1,0,1};
+        int mini=INT_MAX;
+        while(!q.empty()){
+            int ii=q.front().first.first;
+            int jj=q.front().first.second;
+            int dis=q.front().second;
+            q.pop();
+            
+                    if(ii==X && jj==Y)
+                    mini=min(mini,dis);
+            for(int i=0;i<4;i++){
+                int nr=ii+r[i];
+                int nc=jj+c[i];
+                
+                if(nr>=0 && nr<N && nc>=0 && nc<M && !vis[nr][nc] && A[nr][nc]==1){
+                    vis[nr][nc]=1;
+                    q.push({{nr,nc},dis+1});
+                }
+            }
+        }
+        if(mini==INT_MAX)
+        return -1;
+        return mini;
+        
+    }
+    
+};
