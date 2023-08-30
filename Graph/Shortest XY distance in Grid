@@ -1,0 +1,71 @@
+//{ Driver Code Starts
+#include <bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+// User function Template for C++
+
+class Solution {
+  public:
+    int shortestXYDist(vector<vector<char>> grid, int N, int M) {
+        // code here
+        vector<vector<int>>vis(N,vector<int>(M,0));
+        queue<pair<pair<int,int>,int>>q;
+        for(int i=0;i<N;i++){
+            for(int j=0;j<M;j++){
+                if(grid[i][j]=='X')
+                q.push({{i,j},0});
+            }
+        }
+        int r[]={-1,0,1,0};
+        int c[]={0,-1,0,1};
+        while(!q.empty()){
+            int ii=q.front().first.first;
+            int jj=q.front().first.second;
+            int dis=q.front().second;
+            q.pop();
+            
+            for(int i=0;i<4;i++){
+                int nr=ii+r[i];
+                int nc=jj+c[i];
+                
+                if(nr>=0 && nr<N && nc>=0 && nc<M && !vis[nr][nc] && grid[nr][nc]!='X'){
+                    vis[nr][nc]=1;
+                    if(grid[nr][nc]=='Y')
+                    return dis+1;
+                    q.push({{nr,nc},dis+1});
+                }
+            }
+        }
+        
+    }
+};
+
+//{ Driver Code Starts.
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int N, M;
+        char ch;
+        cin >> N >> M;
+
+        vector<vector<char>> grid;
+
+        for (int i = 0; i < N; i++) {
+            vector<char> col;
+            for (int i = 0; i < M; i++) {
+                cin >> ch;
+                col.push_back(ch);
+            }
+            grid.push_back(col);
+        }
+
+        Solution ob;
+        cout << ob.shortestXYDist(grid, N, M) << endl;
+    }
+    return 0;
+}
+// } Driver Code Ends
