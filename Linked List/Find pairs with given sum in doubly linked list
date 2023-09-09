@@ -1,0 +1,23 @@
+vector<pair<int, int>> findPairs(Node* head, int k)
+{
+    // Write your code here.
+    Node*start=head,*end=head;
+    while(end->next){
+        end=end->next;
+    }
+    vector<pair<int,int>>p;
+    while(start->data<end->data){
+        int sum=start->data+end->data;
+        if(sum>k){
+            end=end->prev;
+        }
+        else if(sum==k){
+            p.push_back({start->data,end->data});
+            start=start->next;
+             end=end->prev;
+        }
+        else
+        start=start->next;
+    }
+    return p;
+}
