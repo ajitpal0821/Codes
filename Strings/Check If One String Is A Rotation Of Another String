@@ -1,0 +1,23 @@
+int isCyclicRotation(string &p, string &q) 
+{
+    // Write your code here
+   
+    int n=p.length();
+    int m=p.length();
+    if(n!=m)
+    return 0;
+    string newans=p+p;
+    for(int i=0;i<n;i++){
+        bool ans=true;
+        for(int j=0;j<n;j++){
+            if(newans[i+j]!=q[j])
+            {
+                ans=false;
+                break;
+            }
+        }
+        if(ans)
+        return true;
+    }
+    return false;
+}
