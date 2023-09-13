@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+bool isAnagram(string str1, string str2)
+{
+    //Write your code here
+    map<char,int>mp;
+    int n=str1.length();
+    int m=str2.length();
+    for(int i=0;i<n;i++){
+        mp[str1[i]]++;
+    }
+    
+    for(int i=0;i<m;i++){
+        if(mp.find(str2[i])!=mp.end()){
+            mp[str2[i]]--;
+            if(mp[str2[i]]==0)// otherwise map will keep key with count value zero
+            mp.erase(str2[i]);
+        }
+        else
+        return false;
+    }
+    
+    return true;
+
+
+}
