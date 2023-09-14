@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+int sumOfBeauty(string s) {
+	// Write your code here.
+	int count=0;
+	int n=s.length();
+	for(int i=0;i<n;i++){
+		map<char,int>mp;
+		for(int j=i;j<n;j++){
+	int maxi=INT_MIN,mini=INT_MAX;
+			
+			mp[s[j]]++;
+                        for (auto x : mp) {
+                          maxi = max(maxi,x.second);
+						  if(x.second>=1)
+                          mini = min(mini,x.second);
+                        }
+
+		count+=(maxi-mini);
+                }
+	}
+	return count;
+}
