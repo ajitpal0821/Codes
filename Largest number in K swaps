@@ -1,0 +1,35 @@
+class Solution
+{
+    public:
+    
+    void fun(string str,int k,string &ans,int index){
+        if(k==0 || index==str.length()-1){
+        
+        ans=max(ans,str);
+       return;
+            
+        }
+        int n=str.length();
+   
+           for(int j=index+1;j<n;j++){
+               if(str[j]>str[index])
+               {
+                   swap(str[index],str[j]);
+                   fun(str,k-1,ans,index+1);//swapped
+                   swap(str[index],str[j]);
+               }
+
+       }
+      fun(str,k,ans,index+1);//not swapped
+    }
+    string findMaximumNum(string str, int k)
+    {
+       // code here.
+       string ans=str;
+       fun(str,k,ans,0);
+       return ans;
+
+    }
+    
+    
+};
