@@ -1,0 +1,33 @@
+int createAtoi(string s) {
+    // Write your code here.
+    int n=s.length();
+    long ans=0;
+    int sign=1;
+    int i=0;
+
+    while(s[i]==' ')
+    i++;
+    s=s.substr(i);
+    if(s[0]=='-')
+    sign=-1;
+    if(s[i]=='-' || s[i]=='+')
+    i=1;
+    else
+    i=0;
+    for(i;i<n;i++){
+       
+         if ((s[i] - '0' > 9 || s[i]-'0'<0) || s[i]==' ')
+        break;
+        else if (s[i] - '0' >= 0 && s[i]-'0' <= 9) {
+        ans = ans * 10 + s[i] - '0';
+        }
+        if(sign==-1 && -1*ans<INT_MIN)
+       return -INT_MIN;
+       if(sign==1 && ans>INT_MAX)
+       return INT_MAX;
+
+    }
+    // if(sign)
+    return (int)sign*ans;
+    // return int(ans);
+}
