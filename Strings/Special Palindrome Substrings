@@ -1,0 +1,45 @@
+class Solution{
+    //Complete the function and return minimum number of operations
+    public:
+    int pal(string temp,int s,int m){
+        int cnt=0;
+        int n=temp.size();
+        int start=0,end=n-1;
+        while(start<=end){
+            if(temp[start]!=temp[end])
+            {
+                if(start>=s && end<=s+m-1)
+               return 1e9;
+            cnt++;
+            }
+            start++;
+            end--;
+        }
+        return cnt;
+    }
+    int specialPalindrome(string s1, string s2){
+        //Code Here
+        int n=s1.length();
+        int m=s2.length();
+        int mini=1e9;
+         string temp=s1;
+        for(int i=0;i<=n-m;i++){
+           
+        int ans=0;
+            for(int j=0;j<m;j++){
+                if(temp[i+j]!=s2[j]){
+                ans++;
+                temp[i+j]=s2[j];
+                }
+                
+            }
+            mini=min(mini,ans+pal(temp,i,m));
+            temp=s1;
+            
+        }
+        if(mini==1e9)
+        return -1;
+        else
+        return mini;
+    }
+};
