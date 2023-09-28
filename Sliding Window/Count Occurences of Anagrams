@@ -1,0 +1,40 @@
+class Solution{
+public:
+	int search(string pat, string txt) {
+	    // code here
+	    map<char,int>mp;
+	    int cnt=0;
+	    int k=pat.length();
+	    for(int i=0;i<k;i++){
+	        mp[pat[i]]++;
+	    }
+	    int i=0,j=0;
+	   // bool match=true;
+	    map<char,int>comp;
+	    while(j<txt.size()){
+	     
+	       comp[txt[j]]++;
+	       
+	       //if(j<k+i){
+	       //    j++;
+	       //}
+	        if(j-i+1==k){
+	          bool match = true;
+	           for(auto it:mp){
+	               if(comp[it.first]!=it.second){
+	                   match=false;
+	                   break;	
+	                   }
+	           }
+	           if(match)
+	           cnt++;
+	       comp[txt[i]]--;
+	       i++;
+	       }
+	       j++;
+	     
+	    }
+	   return cnt;
+	}
+
+};
