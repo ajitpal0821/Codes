@@ -1,0 +1,22 @@
+class Solution {
+public:
+void solve(int open,int close,string ans,vector<string>&strings){
+    if(open==0 && close==0)
+    strings.push_back(ans);
+
+    if(open!=0)
+    solve(open-1,close,ans+'(',strings);
+    if(close>open){
+        solve(open,close-1,ans+')',strings);
+    }
+    return;
+}
+    vector<string> generateParenthesis(int n) {
+        //using recursion
+        int open=n,close=n;
+        string ans="";
+        vector<string>strings;
+        solve(open,close,ans,strings);
+        return strings;
+    }
+};
