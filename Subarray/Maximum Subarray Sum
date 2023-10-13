@@ -1,0 +1,14 @@
+long long maxSubarraySum(vector<int> arr, int n)
+{
+    // Write your code here.
+    //maximum subarray sum
+    long long sum=0;
+    long long maxi=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+        if(sum<0)
+        sum=0;
+        maxi=max(maxi,sum);
+    }
+    return maxi;
+}
