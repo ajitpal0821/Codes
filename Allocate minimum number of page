@@ -1,0 +1,63 @@
+//{ Driver Code Starts
+// Initial template for C++
+
+#include<bits/stdc++.h>
+using namespace std;
+
+
+// } Driver Code Ends
+//User function template in C++
+
+class Solution 
+{
+    public:
+    //Function to find minimum number of pages.
+    int count(int mid,int A[],int N,int M){
+        int ans=1;
+        int sum=0;
+        // int n=A.size();
+        for(int i=0;i<N;i++){
+            if(A[i]>mid)
+            return false;
+            if(sum+A[i]<=mid){
+            sum+=A[i];
+                
+            }
+            else{
+                ans++;
+                sum=0;
+                sum+=A[i];
+            }
+        }
+        return ans<=M;
+    }
+    int ans=0;
+    int findPages(int A[], int N, int M) 
+    {
+        //code here
+        if(M>N)
+        return -1;
+        int low=INT_MAX,high=0;
+        int res=0;
+        for(int i=0;i<N;i++){
+            low=min(low,A[i]);
+            res=res+A[i];
+        }
+        high=res;
+        int ans=-1;
+        while(low<=high){
+                       int mid = (low + high) / 2;
+
+            
+            if(count(mid,A,N,M)){
+            high=mid-1;
+            ans=mid;
+            }
+            else
+                low=mid+1;
+                
+            }
+            return ans;
+    }
+};
+
