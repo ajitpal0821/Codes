@@ -1,0 +1,46 @@
+class Solution {
+  public:
+    //Function to return a list of indexes denoting the required 
+    //combinations whose sum is equal to given number.
+    void recur(vector<int>&A,int i,int n,int B,vector<int>&res,vector<vector<int>>&ans){
+           if(B==0){
+            ans.push_back(res);
+            return;
+           }
+           
+        if(B<0 || i==n )
+        return;
+        
+        
+        
+        if(B>=A[i]){
+        B-=A[i];
+        res.push_back(A[i]);
+        recur(A,i,n,B,res,ans);
+        B+=A[i];
+  res.pop_back();
+        }
+        
+        recur(A,i+1,n,B,res,ans);
+    }
+    vector<vector<int> > combinationSum(vector<int> &A, int B) {
+        // Your code here
+        int n=A.size();
+         set<int>final;
+         vector<int>C;
+         for(int i=0;i<n;i++){
+             if(final.find(A[i])==final.end())
+             {
+                 C.push_back(A[i]);
+             }
+             final.insert(A[i]);
+         }
+        sort(C.begin(),C.end());
+        vector<vector<int>>ans;
+        vector<int>res;
+        int m=C.size();
+        recur(C,0,m,B,res,ans);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
+};
